@@ -1,8 +1,6 @@
 # Options
 
-Any specified option will be passed through directly to [csslint][], thus you can specify any option that csslint supports. The csslint API is a bit awkward: For each rule, a value of `false` ignores the rule, a value of `2` will set it to become an error. Otherwise all rules are considered warnings.
-
-[JSHint]: http://csslint.net/
+Any specified option will be passed through directly to [csslint](http://csslint.net/), thus you can specify any option that csslint supports. The csslint API is a bit awkward: For each rule, a value of `false` ignores the rule, a value of `2` will set it to become an error. Otherwise all rules are considered warnings.
 
 For the current csslint version, these rules are available:
 

@@ -32,9 +32,7 @@ module.exports = function(grunt) {
           'import': 0,
           'ids': 0
         },
-        files: {
-          src:  'test/fixtures/invalid.css'
-        }
+        files: ['test/fixtures/invalid.css']
       }
     }
   });

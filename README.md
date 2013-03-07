@@ -30,9 +30,7 @@ Task targets, files and options may be specified according to the grunt [Configu
 Files are linted with [csslint](https://github.com/stubbornella/csslint).
 ### Options
 
-Any specified option will be passed through directly to [csslint][], thus you can specify any option that csslint supports. The csslint API is a bit awkward: For each rule, a value of `false` ignores the rule, a value of `2` will set it to become an error. Otherwise all rules are considered warnings.
-
-[JSHint]: http://csslint.net/
+Any specified option will be passed through directly to [csslint](http://csslint.net/), thus you can specify any option that csslint supports. The csslint API is a bit awkward: For each rule, a value of `false` ignores the rule, a value of `2` will set it to become an error. Otherwise all rules are considered warnings.
 
 For the current csslint version, these rules are available:
 
@@ -84,52 +82,27 @@ node -e "require('csslint').CSSLint.getRules().forEach(function(x) { console.log
 
 ```js
 csslint: {
-  files: 'app.css',
-}
-```
-
-#### Specifying rules
-
-Rules can be specified as options for all filesets:
-
-```js
-csslint: {
-  options: {
-    import: false
-  },
-  files: 'app.css',
-}
-```
-
-Or per filset:
-
-```js
-csslint: {
   strict: {
     options: {
       import: 2
     },
-    files: {
-      src: ['app.css', 'module.css']
-    }
+    src: ['path/to/**/*.css']
   },
   lax: {
     options: {
       import: false
     },
-    files: {
-      src: 'lib.css'
-    }
+    src: ['path/to/**/*.css']
   }
 }
 ```
 
 ## Release History
 
- * 2013-03-01   v0.1.0   Initial release.
+ * 2013-03-06   v0.1.0   Initial release.
 
 ---
 
 Task submitted by [Jörn Zaefferer](http://bassistance.de)
 
-*This file was generated on Thu Mar 07 2013 17:22:24.*
+*This file was generated on Thu Mar 07 2013 14:23:00.*
