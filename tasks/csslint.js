@@ -16,11 +16,12 @@ module.exports = function(grunt) {
     csslint.getRules().forEach(function( rule ) {
       ruleset[ rule.id ] = 1;
     });
-    for ( var rule in this.data.rules ) {
-      if ( !this.data.rules[ rule ] ) {
+    var options = this.options();
+    for ( var rule in options ) {
+      if ( !options[ rule ] ) {
         delete ruleset[rule];
       } else {
-        ruleset[ rule ] = this.data.rules[ rule ];
+        ruleset[ rule ] = options[ rule ];
       }
     }
     var hadErrors = 0;

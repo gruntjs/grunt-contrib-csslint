@@ -19,7 +19,6 @@ Once the plugin has been installed, it may be enabled inside your Gruntfile with
 grunt.loadNpmTasks('grunt-contrib-csslint');
 ```
 
-*This plugin was designed to work with Grunt 0.4.x. If you're still using grunt v0.3.x it's strongly recommended that [you upgrade](http://gruntjs.com/upgrading-from-0.3-to-0.4).*
 
 
 
@@ -29,6 +28,57 @@ _Run this task with the `grunt csslint` command._
 Task targets, files and options may be specified according to the grunt [Configuring tasks](http://gruntjs.com/configuring-tasks) guide.
 
 Files are linted with [csslint](https://github.com/stubbornella/csslint).
+### Options
+
+Any specified option will be passed through directly to [csslint][], thus you can specify any option that csslint supports. The csslint API is a bit awkward: For each rule, a value of `false` ignores the rule, a value of `2` will set it to become an error. Otherwise all rules are considered warnings.
+
+[JSHint]: http://csslint.net/
+
+For the current csslint version, these rules are available:
+
+* important
+* adjoining-classes
+* known-properties
+* box-sizing
+* box-model
+* overqualified-elements
+* display-property-grouping
+* bulletproof-font-face
+* compatible-vendor-prefixes
+* regex-selectors
+* errors
+* duplicate-background-images
+* duplicate-properties
+* empty-rules
+* selector-max-approaching
+* gradients
+* fallback-colors
+* font-sizes
+* font-faces
+* floats
+* star-property-hack
+* outline-none
+* import
+* ids
+* underscore-property-hack
+* rules-count
+* qualified-headings
+* selector-max
+* shorthand
+* text-indent
+* unique-headings
+* universal-selector
+* unqualified-attributes
+* vendor-prefix
+* zero-units
+
+For an explanation of those rules, [check the csslint wiki](https://github.com/stubbornella/csslint/wiki/Rules).
+
+*Side note: To update this list, run this:*
+
+```bash
+node -e "require('csslint').CSSLint.getRules().forEach(function(x) { console.log(x.id) })"
+```
 
 ### Usage Examples
 
@@ -38,13 +88,48 @@ csslint: {
 }
 ```
 
+#### Specifying rules
+
+Rules can be specified as options for all filesets:
+
+```js
+csslint: {
+  options: {
+    import: false
+  },
+  files: 'app.css',
+}
+```
+
+Or per filset:
+
+```js
+csslint: {
+  strict: {
+    options: {
+      import: 2
+    },
+    files: {
+      src: ['app.css', 'module.css']
+    }
+  },
+  lax: {
+    options: {
+      import: false
+    },
+    files: {
+      src: 'lib.css'
+    }
+  }
+}
+```
 
 ## Release History
 
- * 2013-02-28   v0.1.0   Initial release.
+ * 2013-03-01   v0.1.0   Initial release.
 
 ---
 
 Task submitted by [Jörn Zaefferer](http://bassistance.de)
 
-*This file was generated on Mon Mar 04 2013 08:48:16.*
+*This file was generated on Thu Mar 07 2013 17:22:24.*

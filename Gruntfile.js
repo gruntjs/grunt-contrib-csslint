@@ -1,4 +1,4 @@
-/*
+  /*
  * grunt-contrib-csslint
  * http://gruntjs.com/
  *
@@ -26,7 +26,16 @@ module.exports = function(grunt) {
     csslint: {
       valid: 'test/fixtures/valid.css',
       empty: 'test/fixtures/empty.css',
-      all: 'test/fixtures/*.css'
+      all: 'test/fixtures/*.css',
+      custom: {
+        options: {
+          'import': 0,
+          'ids': 0
+        },
+        files: {
+          src:  'test/fixtures/invalid.css'
+        }
+      }
     }
   });
 
@@ -37,7 +46,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-internal');
 
-  // plugin's task(s), manually check the output, then run `grunt csslint:all` to look at lint errors
+  // plugin's task(s), manually check the output, then run `grunt csslint:all` and `grunt csslint:custom` to look at lint errors
   grunt.registerTask('test', ['csslint:valid', 'csslint:empty']);
 
   // By default, lint and run all tests.
