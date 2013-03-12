@@ -55,7 +55,7 @@ module.exports = function(grunt) {
       }
     }
     var hadErrors = 0;
-    this.filesSrc.forEach(function( filepath ) {
+    this.filesSrc.forEach(function( filepath, index ) {
       var file = grunt.file.read( filepath ),
         message = "Linting " + filepath + "...",
         result;
@@ -63,6 +63,12 @@ module.exports = function(grunt) {
       // skip empty files
       if (file.length) {
         result = csslint.verify( file, ruleset );
+        // add result to report
+        report.files[index] = {
+          filepath: filepath,
+          passed: !result.messages.length,
+          errors: result.messages
+        };
         verbose.write( message );
         if (result.messages.length) {
           verbose.or.write( message );
