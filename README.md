@@ -93,9 +93,20 @@ csslint: {
       import: false
     },
     src: ['path/to/**/*.css']
+  },
+  withReport: {
+    options: {
+      import: 2
+    },
+    src: ['path/to/**/*.css'],
+    junit: 'build/reports/csslint.xml',
+    checkstyle: 'build/reports/csslint_checkstyle.xml'
   }
 }
 ```
+
+
+`src` specifies the files to lint, `options` the csslint options to apply. `junit` and `checkstyle` are optional. They specify the relative path to the report files that will be generated.
 
 ## Release History
 
