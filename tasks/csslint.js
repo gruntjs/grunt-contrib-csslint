@@ -9,10 +9,40 @@
 'use strict';
 
 module.exports = function(grunt) {
+  /**
+     * Returns a string with encoded HTML characters.
+     *
+     * @param {string} text The text to encode.
+     * @return {string}
+     */
+  function encodeHTML(text) {
+    if (!text) {
+      return '';
+    }
+
+    return text
+      .replace(/"/g, '&quot;')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/'/g, '&apos;');
+  }
+
   grunt.registerMultiTask( "csslint", "Lint CSS files with csslint", function() {
     var csslint = require( "csslint" ).CSSLint;
     var ruleset = {};
     var verbose = grunt.verbose;
+    var template;
+    var report = {
+      files: []
+    };
+    // get underscore
+    var underscore = grunt.util._;
+    // load templates
+    var templates = {
+      junit: grunt.file.read(__dirname + '/templates/junit.tmpl'),
+      checkstyle: grunt.file.read(__dirname + '/templates/checkstyle.tmpl')
+    };
     csslint.getRules().forEach(function( rule ) {
       ruleset[ rule.id ] = 1;
     });
@@ -25,7 +55,7 @@ module.exports = function(grunt) {
       }
     }
     var hadErrors = 0;
-    this.filesSrc.forEach(function( filepath ) {
+    this.filesSrc.forEach(function( filepath, index ) {
       var file = grunt.file.read( filepath ),
         message = "Linting " + filepath + "...",
         result;
@@ -33,6 +63,12 @@ module.exports = function(grunt) {
       // skip empty files
       if (file.length) {
         result = csslint.verify( file, ruleset );
+        // add result to report
+        report.files[index] = {
+          filepath: filepath,
+          passed: !result.messages.length,
+          errors: result.messages
+        };
         verbose.write( message );
         if (result.messages.length) {
           verbose.or.write( message );
@@ -53,6 +89,28 @@ module.exports = function(grunt) {
       }
 
     });
+
+    // set encoding function
+    report.encode = encodeHTML;
+    // get workspace option if set
+    report.workspace = grunt.option('workspace') || '';
+
+    // generate junit xml
+    if (this.data.junit) {
+      template = grunt.util._.template(templates.junit, {
+        'obj': report
+      });
+      grunt.file.write(this.data.junit, template);
+    }
+
+    // checkstyle junit xml
+    if (this.data.checkstyle) {
+      template = grunt.util._.template(templates.checkstyle, {
+        'obj': report
+      });
+      grunt.file.write(this.data.checkstyle, template);
+    }
+
     if ( hadErrors ) {
       return false;
     }
