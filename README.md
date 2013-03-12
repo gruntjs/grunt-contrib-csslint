@@ -99,14 +99,14 @@ csslint: {
       import: 2
     },
     src: ['path/to/**/*.css'],
-    junit: 'build/reports/csslint.xml',
-    checkstyle: 'build/reports/csslint_checkstyle.xml'
+    junit: 'reports/csslint.xml',
+    checkstyle: 'reports/csslint_checkstyle.xml'
   }
 }
 ```
 
 
-`src` specifies the files to lint, `options` the csslint options to apply. `junit` and `checkstyle` are optional. They specify the relative path to the report files that will be generated.
+`src` or `files` specifies the files to lint, `options` the csslint options to apply. `junit` and `checkstyle` are optional. They specify the relative path to the report files that will be generated.
 
 ## Release History
 
