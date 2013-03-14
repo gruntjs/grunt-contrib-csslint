@@ -78,10 +78,47 @@ For an explanation of those rules, [check the csslint wiki](https://github.com/s
 node -e "require('csslint').CSSLint.getRules().forEach(function(x) { console.log(x.id) })"
 ```
 
+An additional option is supported:
+
+#### csslintrc
+Type: `String`
+Default value: `null`
+
+If this filename is specified, options and globals defined therein will be used. Task and target options override the options within the `csslintrc` file. The `csslint` file must be valid JSON and looks something like this:
+
+```json
+{
+  "qualified-headings": true,
+  "unique-headings": true,
+  "known-properties": false
+}
+```
+
 ### Usage Examples
 
 ```js
 csslint: {
+  strict: {
+    options: {
+      import: 2
+    },
+    src: ['path/to/**/*.css']
+  },
+  lax: {
+    options: {
+      import: false
+    },
+    src: ['path/to/**/*.css']
+  }
+}
+```
+
+#### Loading rules from an external file
+```js
+csslint: {
+  options: {
+    csslintrc: '.csslintrc'
+  },
   strict: {
     options: {
       import: 2
