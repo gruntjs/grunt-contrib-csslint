@@ -76,13 +76,13 @@ module.exports = function(grunt) {
     if (options.formatters && grunt.util._.isArray( options.formatters )) {
       options.formatters.forEach(function ( formatterDefinition ) {
         if (formatterDefinition.id && formatterDefinition.dest) {
-          var formatter = csslint.getFormatter(formatterDefinition.id);
+          var formatter = csslint.getFormatter( formatterDefinition.id );
           var output = formatter.startFormat();
-          grunt.util._.each(combinedResult, function ( result, filename ) {
+          grunt.util._.each( combinedResult, function ( result, filename ) {
             output += formatter.formatResults( result, filename, {});
           });
           output += formatter.endFormat();
-          grunt.file.write(formatterDefinition.dest, output);
+          grunt.file.write( formatterDefinition.dest, output );
         }
       });
     }
