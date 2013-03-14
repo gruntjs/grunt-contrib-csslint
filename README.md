@@ -78,7 +78,7 @@ For an explanation of those rules, [check the csslint wiki](https://github.com/s
 node -e "require('csslint').CSSLint.getRules().forEach(function(x) { console.log(x.id) })"
 ```
 
-An additional option is supported:
+A few additional options are supported:
 
 #### csslintrc
 Type: `String`
@@ -93,6 +93,24 @@ If this filename is specified, options and globals defined therein will be used.
   "known-properties": false
 }
 ```
+#### formatters
+Type: `array`
+Default value: `null`
+
+If the formatters options is specified, the grunt csslint task is able to use the
+all formatters provided by csslint.
+
+For the current csslint version, the following formatters are supported:
+
+* text
+* compact
+* lint-xml
+* csslint-xml
+* checkstyle-xml
+* junit-xml
+
+For an explanation of those formatters, [check the csslint wiki](https://github.com/stubbornella/csslint/wiki/Command-line-interface), section Options/--format.
+
 
 ### Usage Examples
 
@@ -128,6 +146,25 @@ csslint: {
   lax: {
     options: {
       import: false
+    },
+    src: ['path/to/**/*.css']
+  }
+}
+```
+
+#### Specifiying output formatters
+```js
+csslint: {
+  options: {
+    csslintrc: '.csslintrc',
+    formatters: [
+      {id: 'junit-xml', dest: 'report/csslint_junit.xml'},
+      {id: 'csslint-xml', dest: 'report/csslint.xml'}
+    ]
+  },
+  strict: {
+    options: {
+      import: 2
     },
     src: ['path/to/**/*.css']
   }
