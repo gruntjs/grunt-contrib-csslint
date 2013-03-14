@@ -14,6 +14,7 @@ module.exports = function(grunt) {
     var ruleset = {};
     var verbose = grunt.verbose;
     var externalOptions = {};
+    var combinedResult = {};
     var options = this.options();
 
     // Read JSHint options from a specified jshintrc file.
@@ -55,6 +56,9 @@ module.exports = function(grunt) {
           verbose.ok();
         }
 
+        // store combined result for later use with formatters
+        combinedResult[filepath] = result;
+
         result.messages.forEach(function( message ) {
           grunt.log.writeln( "[".red + (typeof message.line !== "undefined" ? ( "L" + message.line ).yellow + ":".red + ( "C" + message.col ).yellow : "GENERAL".yellow) + "]".red );
           grunt.log[ message.type === "error" ? "error" : "writeln" ]( message.message + " " + message.rule.desc + " (" + message.rule.id + ")" );
@@ -67,6 +71,24 @@ module.exports = function(grunt) {
       }
 
     });
+
+    // formatted output
+    if (options.formatters && grunt.util._.isArray( options.formatters )) {
+      options.formatters.forEach(function ( formatterDefinition ) {
+        if (formatterDefinition.id && formatterDefinition.dest) {
+          var formatter = csslint.getFormatter( formatterDefinition.id );
+          if (formatter) {
+            var output = formatter.startFormat();
+            grunt.util._.each( combinedResult, function ( result, filename ) {
+              output += formatter.formatResults( result, filename, {});
+            });
+            output += formatter.endFormat();
+            grunt.file.write( formatterDefinition.dest, output );
+          }
+        }
+      });
+    }
+
     if ( hadErrors ) {
       return false;
     }
