@@ -77,10 +77,9 @@ For an explanation of those rules, [check the csslint wiki](https://github.com/s
 ```bash
 node -e "require('csslint').CSSLint.getRules().forEach(function(x) { console.log(x.id) })"
 ```
-
 A few additional options are supported:
 
-#### csslintrc
+###### csslintrc
 Type: `String`
 Default value: `null`
 
@@ -93,7 +92,7 @@ If this filename is specified, options and globals defined therein will be used.
   "known-properties": false
 }
 ```
-#### formatters
+###### formatters
 Type: `array`
 Default value: `null`
 
@@ -110,8 +109,6 @@ For the current csslint version, the following formatters are supported:
 * junit-xml
 
 For an explanation of those formatters, [check the csslint wiki](https://github.com/stubbornella/csslint/wiki/Command-line-interface), section Options/--format.
-
-
 ### Usage Examples
 
 ```js
@@ -131,7 +128,7 @@ csslint: {
 }
 ```
 
-#### Loading rules from an external file
+###### Loading rules from an external file
 ```js
 csslint: {
   options: {
@@ -152,7 +149,7 @@ csslint: {
 }
 ```
 
-#### Specifiying output formatters
+###### Specifiying output formatters
 ```js
 csslint: {
   options: {
@@ -173,10 +170,11 @@ csslint: {
 
 ## Release History
 
+ * 2013-03-13   v0.1.1   Support formatters Support .csslintrc
  * 2013-03-06   v0.1.0   Initial release.
 
 ---
 
 Task submitted by [Jörn Zaefferer](http://bassistance.de)
 
-*This file was generated on Thu Mar 07 2013 14:23:00.*
+*This file was generated on Thu Mar 14 2013 08:58:26.*
