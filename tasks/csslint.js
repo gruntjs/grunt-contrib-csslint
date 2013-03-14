@@ -13,10 +13,25 @@ module.exports = function(grunt) {
     var csslint = require( "csslint" ).CSSLint;
     var ruleset = {};
     var verbose = grunt.verbose;
+    var externalOptions = {};
+    var combinedResult = {};
+    var options = this.options();
+
+    // Read JSHint options from a specified jshintrc file.
+    if (options.csslintrc) {
+      externalOptions = grunt.file.readJSON( options.csslintrc );
+      // delete csslintrc option to not confuse csslint if a future release
+      // implements a rule or options on its own
+      delete options.csslintrc;
+    }
+
+    // merge external options with options specified in gruntfile
+    options = grunt.util._.extend( options, externalOptions );
+
     csslint.getRules().forEach(function( rule ) {
       ruleset[ rule.id ] = 1;
     });
-    var options = this.options();
+
     for ( var rule in options ) {
       if ( !options[ rule ] ) {
         delete ruleset[rule];
@@ -41,6 +56,9 @@ module.exports = function(grunt) {
           verbose.ok();
         }
 
+        // store combined result for later use with formatters
+        combinedResult[filepath] = result;
+
         result.messages.forEach(function( message ) {
           grunt.log.writeln( "[".red + (typeof message.line !== "undefined" ? ( "L" + message.line ).yellow + ":".red + ( "C" + message.col ).yellow : "GENERAL".yellow) + "]".red );
           grunt.log[ message.type === "error" ? "error" : "writeln" ]( message.message + " " + message.rule.desc + " (" + message.rule.id + ")" );
@@ -53,6 +71,24 @@ module.exports = function(grunt) {
       }
 
     });
+
+    // formatted output
+    if (options.formatters && grunt.util._.isArray( options.formatters )) {
+      options.formatters.forEach(function ( formatterDefinition ) {
+        if (formatterDefinition.id && formatterDefinition.dest) {
+          var formatter = csslint.getFormatter( formatterDefinition.id );
+          if (formatter) {
+            var output = formatter.startFormat();
+            grunt.util._.each( combinedResult, function ( result, filename ) {
+              output += formatter.formatResults( result, filename, {});
+            });
+            output += formatter.endFormat();
+            grunt.file.write( formatterDefinition.dest, output );
+          }
+        }
+      });
+    }
+
     if ( hadErrors ) {
       return false;
     }
