@@ -13,10 +13,24 @@ module.exports = function(grunt) {
     var csslint = require( "csslint" ).CSSLint;
     var ruleset = {};
     var verbose = grunt.verbose;
+    var externalOptions = {};
+    var options = this.options();
+
+    // Read JSHint options from a specified jshintrc file.
+    if (options.csslintrc) {
+      externalOptions = grunt.file.readJSON( options.csslintrc );
+      // delete csslintrc option to not confuse csslint if a future release
+      // implements a rule or options on its own
+      delete options.csslintrc;
+    }
+
+    // merge external options with options specified in gruntfile
+    options = grunt.util._.extend( options, externalOptions );
+
     csslint.getRules().forEach(function( rule ) {
       ruleset[ rule.id ] = 1;
     });
-    var options = this.options();
+
     for ( var rule in options ) {
       if ( !options[ rule ] ) {
         delete ruleset[rule];
