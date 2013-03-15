@@ -33,6 +33,12 @@ module.exports = function(grunt) {
           'ids': 0
         },
         files: ['test/fixtures/invalid.css']
+      },
+      external: {
+        options: {
+          csslintrc: 'test/fixtures/.csslintrc'
+        },
+        src: ['test/fixtures/*.css']
       }
     }
   });
@@ -45,7 +51,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-internal');
 
   // plugin's task(s), manually check the output, then run `grunt csslint:all` and `grunt csslint:custom` to look at lint errors
-  grunt.registerTask('test', ['csslint:valid', 'csslint:empty']);
+  grunt.registerTask('test', ['csslint:valid', 'csslint:empty', 'csslint:external']);
 
   // By default, lint and run all tests.
   grunt.registerTask('default', ['jshint', 'test', 'build-contrib']);
