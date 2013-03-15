@@ -53,15 +53,15 @@ A few additional options are supported:
 Type: `String`
 Default value: `null`
 
-If this filename is specified, options and globals defined therein will be used. Task and target options override the options within the `csslintrc` file. The `csslint` file must be valid JSON and looks something like this:
+If this filename is specified the options defined therein will be used. Task and target options override the options within the `csslintrc` file. The `csslintrc` file must be a series of [CSSLint command line arguments](https://github.com/stubbornella/csslint/wiki/Command-line-interface) separated by whitespace or linefeeds.
 
-```json
-{
-  "qualified-headings": true,
-  "unique-headings": true,
-  "known-properties": false
-}
 ```
+--ignore=box-model,ids,important
+--exclude-list=invalid.css,empty.css
+```
+
+This task only processes the `--ignore`, ` --exclude`, `--errors`, and `--warnings` declarations.
+
 #### formatters
 Type: `array`
 Default value: `null`
