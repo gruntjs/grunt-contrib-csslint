@@ -1,0 +1,21 @@
+/* warning: "Don't use IDs in selectors" */
+#idInSelector {
+  font-size: 12pt;
+}
+
+/* warning: "Don't use width or height when using padding or border" */
+.boxModel {
+  border: 1px solid black;
+  padding: 5px;
+  width: 100px;
+}
+
+/* warning: "Be careful when using !important declaration" */
+.important {
+  color: red !important;
+}
+
+/* this will not cause any warnings */
+.perfectlyValid {
+  background-color: #eee;
+}
