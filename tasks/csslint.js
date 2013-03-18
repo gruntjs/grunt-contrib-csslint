@@ -17,7 +17,7 @@ module.exports = function(grunt) {
     var combinedResult = {};
     var options = this.options();
 
-    // Read JSHint options from a specified jshintrc file.
+    // Read CSSLint options from a specified csslintrc file.
     if (options.csslintrc) {
       externalOptions = grunt.file.readJSON( options.csslintrc );
       // delete csslintrc option to not confuse csslint if a future release
