@@ -1,0 +1,4 @@
+--ignore=box-model,ids,important
+--errors=import,box-sizing
+--warnings=star-property-hack
+--exclude-list=invalid.css,empty.css

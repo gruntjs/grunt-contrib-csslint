@@ -11,15 +11,29 @@
 module.exports = function(grunt) {
   grunt.registerMultiTask( "csslint", "Lint CSS files with csslint", function() {
     var csslint = require( "csslint" ).CSSLint;
+    var rcparser = require( "./lib/rcparser" ).init( grunt );
     var ruleset = {};
     var verbose = grunt.verbose;
     var externalOptions = {};
     var combinedResult = {};
     var options = this.options();
+    var filesList = this.filesSrc;
 
     // Read CSSLint options from a specified csslintrc file.
     if (options.csslintrc) {
-      externalOptions = grunt.file.readJSON( options.csslintrc );
+      rcparser.parse( options.csslintrc );
+
+      externalOptions = rcparser.getOptionsObject();
+
+      // filter out excluded files
+      filesList = filesList.filter(function( file ) {
+        if ( rcparser.isFileExcluded( file ) ) {
+          verbose.writeln( "Skipping file excluded by CSSLint config " + file );
+          return false;
+        }
+        return true;
+      });
+
       // delete csslintrc option to not confuse csslint if a future release
       // implements a rule or options on its own
       delete options.csslintrc;
@@ -39,8 +53,9 @@ module.exports = function(grunt) {
         ruleset[ rule ] = options[ rule ];
       }
     }
+
     var hadErrors = 0;
-    this.filesSrc.forEach(function( filepath ) {
+    filesList.forEach(function( filepath ) {
       var file = grunt.file.read( filepath ),
         message = "Linting " + filepath + "...",
         result;
@@ -92,6 +107,6 @@ module.exports = function(grunt) {
     if ( hadErrors ) {
       return false;
     }
-    grunt.log.ok( this.filesSrc.length + " files lint free." );
+    grunt.log.ok( filesList.length + " files lint free." );
   });
 };
