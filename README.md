@@ -171,8 +171,8 @@ csslint: {
 ###### Specifiying working directory for the formatters
 Just specify the formatters as seen above. Then on the command line you add the flag --workDir
 
-```
-grunt reports --workDir=/Users/ChuckNorris/dev/
+```bash
+grunt csslint --workDir=/Users/ChuckNorris/dev/
 ```
 
 ## Release History
