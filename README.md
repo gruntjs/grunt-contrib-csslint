@@ -77,7 +77,38 @@ For an explanation of those rules, [check the csslint wiki](https://github.com/s
 ```bash
 node -e "require('csslint').CSSLint.getRules().forEach(function(x) { console.log(x.id) })"
 ```
+A few additional options are supported:
 
+###### csslintrc
+Type: `String`
+Default value: `null`
+
+If this filename is specified, options and globals defined therein will be used. Task and target options override the options within the `csslintrc` file. The `csslint` file must be valid JSON and looks something like this:
+
+```json
+{
+  "qualified-headings": true,
+  "unique-headings": true,
+  "known-properties": false
+}
+```
+###### formatters
+Type: `array`
+Default value: `null`
+
+If the formatters options is specified, the grunt csslint task is able to use the
+all formatters provided by csslint.
+
+For the current csslint version, the following formatters are supported:
+
+* text
+* compact
+* lint-xml
+* csslint-xml
+* checkstyle-xml
+* junit-xml
+
+For an explanation of those formatters, [check the csslint wiki](https://github.com/stubbornella/csslint/wiki/Command-line-interface), section Options/--format.
 ### Usage Examples
 
 ```js
@@ -93,27 +124,57 @@ csslint: {
       import: false
     },
     src: ['path/to/**/*.css']
-  },
-  withReport: {
-    options: {
-      import: 2
-    },
-    src: ['path/to/**/*.css'],
-    junit: 'reports/csslint.xml',
-    checkstyle: 'reports/csslint_checkstyle.xml'
   }
 }
 ```
 
+###### Loading rules from an external file
+```js
+csslint: {
+  options: {
+    csslintrc: '.csslintrc'
+  },
+  strict: {
+    options: {
+      import: 2
+    },
+    src: ['path/to/**/*.css']
+  },
+  lax: {
+    options: {
+      import: false
+    },
+    src: ['path/to/**/*.css']
+  }
+}
+```
 
-`src` or `files` specifies the files to lint, `options` the csslint options to apply. `junit` and `checkstyle` are optional. They specify the relative path to the report files that will be generated.
+###### Specifiying output formatters
+```js
+csslint: {
+  options: {
+    csslintrc: '.csslintrc',
+    formatters: [
+      {id: 'junit-xml', dest: 'report/csslint_junit.xml'},
+      {id: 'csslint-xml', dest: 'report/csslint.xml'}
+    ]
+  },
+  strict: {
+    options: {
+      import: 2
+    },
+    src: ['path/to/**/*.css']
+  }
+}
+```
 
 ## Release History
 
+ * 2013-03-13   v0.1.1   Support formatters Support .csslintrc
  * 2013-03-06   v0.1.0   Initial release.
 
 ---
 
 Task submitted by [Jörn Zaefferer](http://bassistance.de)
 
-*This file was generated on Thu Mar 07 2013 14:23:00.*
+*This file was generated on Thu Mar 14 2013 08:58:26.*

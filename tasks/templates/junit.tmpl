@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<lint><% obj.files.forEach(function(file) { if (!file.passed) { %>
-  <file name="<%= (obj.workspace || '') + file.filepath %>"><% file.errors.forEach(function(error, index) {if (error) { %>
-	  <issue line="<% print(error.line); %>" char="<% print(error.col || ''); %>" severity="<% print(error.type || 'Error') %>" reason="<% print(error.message ? obj.encode(error.message) : 'Unused variable `' + error.name + '`'); %>" evidence="<% print(error.evidence ? obj.encode(error.evidence) : 'Unused variable `' + error.name + '`'); %>" /><% }}); %>
-	</file><% }}); %>
-</lint>
