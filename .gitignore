@@ -2,5 +2,5 @@ node_modules
 npm-debug.log
 tmp
 .idea/
-/atlassian-ide-plugin.xml
+atlassian-ide-plugin.xml
 reports/
