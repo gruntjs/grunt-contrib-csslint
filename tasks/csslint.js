@@ -17,6 +17,9 @@ module.exports = function(grunt) {
     var combinedResult = {};
     var options = this.options();
 
+    // get working directory option if set
+    var workspace = grunt.option('workspace') || '';
+
     // Read CSSLint options from a specified csslintrc file.
     if (options.csslintrc) {
       externalOptions = grunt.file.readJSON( options.csslintrc );
@@ -80,6 +83,7 @@ module.exports = function(grunt) {
           if (formatter) {
             var output = formatter.startFormat();
             grunt.util._.each( combinedResult, function ( result, filename ) {
+              filename = workspace + filename;
               output += formatter.formatResults( result, filename, {});
             });
             output += formatter.endFormat();

@@ -33,6 +33,15 @@ module.exports = function(grunt) {
           'ids': 0
         },
         files: ['test/fixtures/invalid.css']
+      },
+      withReports: {
+        src: 'test/fixtures/*.css',
+        options: {
+          formatters: [
+            {id: 'junit-xml', dest: 'report/csslint_junit.xml'},
+            {id: 'csslint-xml', dest: 'report/csslint.xml'}
+          ]
+        }
       }
     }
   });
@@ -46,6 +55,9 @@ module.exports = function(grunt) {
 
   // plugin's task(s), manually check the output, then run `grunt csslint:all` and `grunt csslint:custom` to look at lint errors
   grunt.registerTask('test', ['csslint:valid', 'csslint:empty']);
+
+  // task which generates report files
+  grunt.registerTask('report', ['csslint:withReports']);
 
   // By default, lint and run all tests.
   grunt.registerTask('default', ['jshint', 'test', 'build-contrib']);

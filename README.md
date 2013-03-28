@@ -168,6 +168,13 @@ csslint: {
 }
 ```
 
+###### Specifiying working directory for the formatters
+Just specify the formatters as seen above. Then on the command line you add the flag --workspace
+
+```bash
+grunt csslint --workspace=/Users/ChuckNorris/dev/
+```
+
 ## Release History
 
  * 2013-03-13   v0.1.1   Support formatters Support .csslintrc
