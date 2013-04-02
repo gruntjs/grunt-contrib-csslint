@@ -79,3 +79,9 @@ For the current csslint version, the following formatters are supported:
 * junit-xml
 
 For an explanation of those formatters, [check the csslint wiki](https://github.com/stubbornella/csslint/wiki/Command-line-interface), section Options/--format.
+
+#### absoluteFilePathsForFormatters
+Type: `Boolean`
+Default value: `false`
+
+If the absoluteFilePathsForFormatters option is specified, the file names in the generated reports are absolute.

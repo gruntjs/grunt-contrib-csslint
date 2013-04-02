@@ -168,21 +168,6 @@ csslint: {
 }
 ```
 
-###### Using absolute file paths in the output formatters
-Set the option absoluteFilePathsForFormatters to true.
-
-```js
-csslint: {
-  options: {
-    absoluteFilePathsForFormatters: true,
-    formatters: [
-      {id: 'junit-xml', dest: 'report/csslint_junit.xml'},
-      {id: 'csslint-xml', dest: 'report/csslint.xml'}
-    ]
-  }
-}
-```
-
 ## Release History
 
  * 2013-03-13   v0.1.1   Support formatters Support .csslintrc
