@@ -16,6 +16,8 @@ module.exports = function(grunt) {
     var externalOptions = {};
     var combinedResult = {};
     var options = this.options();
+    var path = require("path");
+    var absoluteFilePaths = options.absoluteFilePathsForFormatters || false;
 
     // Read CSSLint options from a specified csslintrc file.
     if (options.csslintrc) {
@@ -80,6 +82,9 @@ module.exports = function(grunt) {
           if (formatter) {
             var output = formatter.startFormat();
             grunt.util._.each( combinedResult, function ( result, filename ) {
+              if (absoluteFilePaths) {
+                filename = path.resolve(filename);
+              }
               output += formatter.formatResults( result, filename, {});
             });
             output += formatter.endFormat();
