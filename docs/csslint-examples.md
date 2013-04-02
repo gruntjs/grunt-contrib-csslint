@@ -57,8 +57,7 @@ csslint: {
 }
 ```
 
-###### Using absolute file paths in the output formatters
-Set the option absoluteFilePathsForFormatters to true.
+#### Using absolute file paths in the output formatters
 
 ```js
 csslint: {

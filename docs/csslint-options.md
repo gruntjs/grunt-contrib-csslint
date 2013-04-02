@@ -84,4 +84,4 @@ For an explanation of those formatters, [check the csslint wiki](https://github.
 Type: `Boolean`
 Default value: `false`
 
-If the absoluteFilePathsForFormatters option is specified, the file names in the generated reports are absolute.
+If the absoluteFilePathsForFormatters option is specified and set to `true`, the file names in the generated reports are absolute.
