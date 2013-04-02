@@ -22,6 +22,11 @@ module.exports = function(grunt) {
       }
     },
 
+    // Before generating any new files, remove any previously-created files.
+    clean: {
+      tests: ['report']
+    },
+
     // Configuration to be run
     csslint: {
       valid: 'test/fixtures/valid.css',
@@ -33,7 +38,30 @@ module.exports = function(grunt) {
           'ids': 0
         },
         files: ['test/fixtures/invalid.css']
+      },
+      withReportsAbs: {
+        options: {
+          absoluteFilePathsForFormatters: true,
+          formatters: [
+            {id: 'junit-xml', dest: 'report/csslint_junit.xml'},
+            {id: 'csslint-xml', dest: 'report/csslint.xml'}
+          ]
+        },
+        src: 'test/fixtures/*.css'
+      },
+      withReportsRel: {
+        options: {
+          formatters: [
+            {id: 'csslint-xml', dest: 'report/csslintRel.xml'}
+          ]
+        },
+        src: 'test/fixtures/*.css'
       }
+    },
+
+    // Unit tests.
+    nodeunit: {
+      tests: ['test/*_test.js']
     }
   });
 
@@ -43,9 +71,12 @@ module.exports = function(grunt) {
   // These plugins provide necessary tasks.
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-internal');
+  grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-contrib-nodeunit');
 
+  // Whenever the "test" task is run, first clean the "report" dir then run this
   // plugin's task(s), manually check the output, then run `grunt csslint:all` and `grunt csslint:custom` to look at lint errors
-  grunt.registerTask('test', ['csslint:valid', 'csslint:empty']);
+  grunt.registerTask('test', ['clean', 'csslint:valid', 'csslint:empty', 'csslint:withReportsAbs', 'csslint:withReportsRel', 'nodeunit']);
 
   // By default, lint and run all tests.
   grunt.registerTask('default', ['jshint', 'test', 'build-contrib']);
