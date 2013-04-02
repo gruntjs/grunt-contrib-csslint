@@ -109,6 +109,13 @@ For the current csslint version, the following formatters are supported:
 * junit-xml
 
 For an explanation of those formatters, [check the csslint wiki](https://github.com/stubbornella/csslint/wiki/Command-line-interface), section Options/--format.
+
+###### absoluteFilePathsForFormatters
+Type: `Boolean`
+Default value: `false`
+
+If the absoluteFilePathsForFormatters option is specified and set to `true`, the file names in the generated reports are absolute.
+
 ### Usage Examples
 
 ```js
@@ -168,8 +175,23 @@ csslint: {
 }
 ```
 
+###### Using absolute file paths in the output formatters
+
+```js
+csslint: {
+  options: {
+    absoluteFilePathsForFormatters: true,
+    formatters: [
+      {id: 'junit-xml', dest: 'report/csslint_junit.xml'},
+      {id: 'csslint-xml', dest: 'report/csslint.xml'}
+    ]
+  }
+}
+```
+
 ## Release History
 
+ * 2013-04-01   v0.1.2   Allow absolute filepaths in reports.
  * 2013-03-13   v0.1.1   Support formatters Support .csslintrc
  * 2013-03-06   v0.1.0   Initial release.
 
@@ -177,4 +199,4 @@ csslint: {
 
 Task submitted by [Jörn Zaefferer](http://bassistance.de)
 
-*This file was generated on Thu Mar 14 2013 08:58:26.*
+*This file was generated on Tue Apr 02 2013 08:24:37.*
