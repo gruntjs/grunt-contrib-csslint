@@ -44,7 +44,7 @@ module.exports = function(grunt) {
     var hadErrors = 0;
     this.filesSrc.forEach(function( filepath ) {
       var file = grunt.file.read( filepath ),
-        message = "Linting " + filepath + "...",
+        message = "Linting " + filepath + " ...",
         result;
 
       // skip empty files
