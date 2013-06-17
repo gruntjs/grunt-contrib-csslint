@@ -70,3 +70,13 @@ csslint: {
   }
 }
 ```
+
+###### Using force option to report but not fail on errors
+
+```js
+csslint: {
+  options: {
+    force: true
+  }
+}
+```
