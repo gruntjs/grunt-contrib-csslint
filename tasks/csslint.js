@@ -94,7 +94,11 @@ module.exports = function(grunt) {
       });
     }
 
-    if ( hadErrors ) {
+    if ( options.force && hadErrors ) {
+      grunt.log.writeln( "Warnings & errors found in css files." );
+      return true;
+    }
+    else if ( hadErrors ) {
       return false;
     }
     grunt.log.ok( this.filesSrc.length + " files lint free." );

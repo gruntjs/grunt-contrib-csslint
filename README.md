@@ -116,6 +116,13 @@ Default value: `false`
 
 If the absoluteFilePathsForFormatters option is specified and set to `true`, the file names in the generated reports are absolute.
 
+
+###### force
+Type: `Boolean`
+Default value: `false`
+
+If the force option is specified and set to `true`, errors and warnings are reported but the task does not fail.
+
 ### Usage Examples
 
 ```js
@@ -185,6 +192,16 @@ csslint: {
       {id: 'junit-xml', dest: 'report/csslint_junit.xml'},
       {id: 'csslint-xml', dest: 'report/csslint.xml'}
     ]
+  }
+}
+```
+
+###### Using force option to report but not fail on errors
+
+```js
+csslint: {
+  options: {
+    force: true
   }
 }
 ```
