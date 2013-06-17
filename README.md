@@ -189,6 +189,16 @@ csslint: {
 }
 ```
 
+###### Using force option to report but not fail on errors
+
+```js
+csslint: {
+  options: {
+    force: true
+  }
+}
+```
+
 ## Release History
 
  * 2013-04-01   v0.1.2   Allow absolute filepaths in reports.
