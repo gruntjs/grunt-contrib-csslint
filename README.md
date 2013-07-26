@@ -92,6 +92,13 @@ If this filename is specified, options and globals defined therein will be used.
   "known-properties": false
 }
 ```
+
+###### force
+Type: `Boolean`
+Default: false
+
+This will let you force the task to succeed even if there are error / warning messages. This can be useful when trying to apply linting to an existing code base, and you want visibility to the issues and need to chip away at the larger problem over time.
+
 ###### formatters
 Type: `array`
 Default value: `null`
