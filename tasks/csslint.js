@@ -65,10 +65,6 @@ module.exports = function(grunt) {
         // store combined result for later use with formatters
         combinedResult[filepath] = result;
 
-        result.messages.forEach(function( message ) {
-          grunt.log.writeln( "[".red + (typeof message.line !== "undefined" ? ( "L" + message.line ).yellow + ":".red + ( "C" + message.col ).yellow : "GENERAL".yellow) + "]".red );
-          grunt.log[ message.type === "error" ? "error" : "writeln" ]( message.message + " " + message.rule.desc + " (" + message.rule.id + ")" );
-        });
         if ( result.messages.length ) {
           hadErrors += 1;
         }
@@ -97,12 +93,18 @@ module.exports = function(grunt) {
         }
       });
     }
+    else{
+      result.messages.forEach(function( message ) {
+        grunt.log.writeln( "[".red + (typeof message.line !== "undefined" ? ( "L" + message.line ).yellow + ":".red + ( "C" + message.col ).yellow : "GENERAL".yellow) + "]".red );
+        grunt.log[ message.type === "error" ? "error" : "writeln" ]( message.message + " " + message.rule.desc + " (" + message.rule.id + ")" );
+      });
+    }
 
     if (hadErrors && !force) {
       return false;
     }
     else if(force){
-      grunt.log.warn( this.filesSrc.length + grunt.util.pluralize(this.filesSrc.length, " file/ files") + "linted with " + hadErrors + "errors");
+      grunt.log.warn( this.filesSrc.length + grunt.util.pluralize(this.filesSrc.length, " file/ files") + "linted with " + hadErrors + " files containing errors.");
     }
     else{
       grunt.log.ok( this.filesSrc.length + grunt.util.pluralize(this.filesSrc.length, " file/ files") + " lint free." );
