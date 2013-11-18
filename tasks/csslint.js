@@ -104,7 +104,7 @@ module.exports = function(grunt) {
       return false;
     }
     else if(force){
-      grunt.log.warn( this.filesSrc.length + grunt.util.pluralize(this.filesSrc.length, " file/ files") + "linted with " + hadErrors + " files containing errors.");
+      grunt.log.warn( this.filesSrc.length + grunt.util.pluralize(this.filesSrc.length, " file/ files") + " linted with " + hadErrors + " files containing errors.");
     }
     else{
       grunt.log.ok( this.filesSrc.length + grunt.util.pluralize(this.filesSrc.length, " file/ files") + " lint free." );
