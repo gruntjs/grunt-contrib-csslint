@@ -10,14 +10,15 @@
 
 module.exports = function(grunt) {
   grunt.registerMultiTask( "csslint", "Lint CSS files with csslint", function() {
-    var csslint = require( "csslint" ).CSSLint;
-    var ruleset = {};
-    var verbose = grunt.verbose;
-    var externalOptions = {};
-    var combinedResult = {};
-    var options = this.options();
-    var path = require("path");
-    var absoluteFilePaths = options.absoluteFilePathsForFormatters || false;
+    var csslint = require( "csslint" ).CSSLint
+      , ruleset = {}
+      , verbose = grunt.verbose
+      , externalOptions = {}
+      , combinedResult = {}
+      , options = this.options()
+      , path = require("path")
+      , absoluteFilePaths = options.absoluteFilePathsForFormatters || false
+      , force = false;
 
     // Read CSSLint options from a specified csslintrc file.
     if (options.csslintrc) {
@@ -29,6 +30,9 @@ module.exports = function(grunt) {
 
     // merge external options with options specified in gruntfile
     options = grunt.util._.extend( options, externalOptions );
+
+    force = options.force;
+
 
     csslint.getRules().forEach(function( rule ) {
       ruleset[ rule.id ] = 1;
@@ -61,10 +65,6 @@ module.exports = function(grunt) {
         // store combined result for later use with formatters
         combinedResult[filepath] = result;
 
-        result.messages.forEach(function( message ) {
-          grunt.log.writeln( "[".red + (typeof message.line !== "undefined" ? ( "L" + message.line ).yellow + ":".red + ( "C" + message.col ).yellow : "GENERAL".yellow) + "]".red );
-          grunt.log[ message.type === "error" ? "error" : "writeln" ]( message.message + " " + message.rule.desc + " (" + message.rule.id + ")" );
-        });
         if ( result.messages.length ) {
           hadErrors += 1;
         }
@@ -93,10 +93,22 @@ module.exports = function(grunt) {
         }
       });
     }
+    else{
+      result.messages.forEach(function( message ) {
+        grunt.log.writeln( "[".red + (typeof message.line !== "undefined" ? ( "L" + message.line ).yellow + ":".red + ( "C" + message.col ).yellow : "GENERAL".yellow) + "]".red );
+        grunt.log[ message.type === "error" ? "error" : "writeln" ]( message.message + " " + message.rule.desc + " (" + message.rule.id + ")" );
+      });
+    }
 
-    if ( hadErrors ) {
+    if (hadErrors && !force) {
       return false;
     }
-    grunt.log.ok( this.filesSrc.length + grunt.util.pluralize(this.filesSrc.length, " file/ files") + " lint free." );
+    else if(force){
+      grunt.log.warn( this.filesSrc.length + grunt.util.pluralize(this.filesSrc.length, " file/ files") + " linted with " + hadErrors + " files containing errors.");
+    }
+    else{
+      grunt.log.ok( this.filesSrc.length + grunt.util.pluralize(this.filesSrc.length, " file/ files") + " lint free." );
+    }
+
   });
 };
