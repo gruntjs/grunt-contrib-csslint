@@ -1,7 +1,7 @@
 {
   "name": "grunt-contrib-csslint",
   "description": "Lint CSS files.",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "homepage": "https://github.com/gruntjs/grunt-contrib-csslint",
   "author": {
     "name": "Grunt Team",
@@ -28,7 +28,7 @@
     "test": "grunt test --force"
   },
   "dependencies": {
-    "csslint": "~0.9.10"
+    "csslint": "~0.10.0"
   },
   "devDependencies": {
     "grunt-contrib-jshint": "~0.2.0",

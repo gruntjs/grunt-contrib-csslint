@@ -1,4 +1,4 @@
-# grunt-contrib-csslint [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-csslint.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-csslint)
+# grunt-contrib-csslint v0.2.0 [![Build Status](https://travis-ci.org/gruntjs/grunt-contrib-csslint.png?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-csslint)
 
 > Lint CSS files.
 
@@ -191,12 +191,13 @@ csslint: {
 
 ## Release History
 
- * 2013-04-01   v0.1.2   Allow absolute filepaths in reports.
- * 2013-03-13   v0.1.1   Support formatters Support .csslintrc
- * 2013-03-06   v0.1.0   Initial release.
+ * 2013-12-02   v0.2.0   Bump to csslint 0.10.0
+ * 2013-04-02   v0.1.2   Allow absolute filepaths in reports.
+ * 2013-03-14   v0.1.1   Support formatters Support .csslintrc
+ * 2013-03-07   v0.1.0   Initial release.
 
 ---
 
 Task submitted by [Jörn Zaefferer](http://bassistance.de)
 
-*This file was generated on Tue Apr 02 2013 08:24:37.*
+*This file was generated on Mon Dec 02 2013 13:12:47.*

@@ -65,9 +65,12 @@ module.exports = function(grunt) {
         // store combined result for later use with formatters
         combinedResult[filepath] = result;
 
-        if ( result.messages.length ) {
-          hadErrors += 1;
-        }
+        result.messages.forEach(function( message ) {
+          grunt.log[ message.type === "error" ? "error" : "writeln" ]( message.message + " " + message.rule.desc + " (" + message.rule.id + ")" );
+          if (message.type === "error") {
+            hadErrors += 1;
+          }
+        });
       } else {
         grunt.log.writeln( "Skipping empty file " + filepath);
       }
