@@ -10,15 +10,15 @@
 
 module.exports = function(grunt) {
   grunt.registerMultiTask( "csslint", "Lint CSS files with csslint", function() {
-    var csslint = require( "csslint" ).CSSLint
-      , ruleset = {}
-      , verbose = grunt.verbose
-      , externalOptions = {}
-      , combinedResult = {}
-      , options = this.options()
-      , path = require("path")
-      , absoluteFilePaths = options.absoluteFilePathsForFormatters || false
-      , force = false;
+    var csslint = require( "csslint" ).CSSLint;
+    var ruleset = {};
+    var verbose = grunt.verbose;
+    var externalOptions = {};
+    var combinedResult = {};
+    var options = this.options();
+    var path = require("path");
+    var absoluteFilePaths = options.absoluteFilePathsForFormatters || false;
+    var force = false;
 
     // Read CSSLint options from a specified csslintrc file.
     if (options.csslintrc) {
