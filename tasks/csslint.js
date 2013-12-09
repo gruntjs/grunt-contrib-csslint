@@ -66,7 +66,6 @@ module.exports = function(grunt) {
         combinedResult[filepath] = result;
 
         result.messages.forEach(function( message ) {
-          grunt.log[ message.type === "error" ? "error" : "writeln" ]( message.message + " " + message.rule.desc + " (" + message.rule.id + ")" );
           if (message.type === "error") {
             hadErrors += 1;
           }
