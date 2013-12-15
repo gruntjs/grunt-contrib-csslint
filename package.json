@@ -20,7 +20,6 @@
       "url": "https://github.com/gruntjs/grunt-contrib-csslint/blob/master/LICENSE-MIT"
     }
   ],
-  "main": "Gruntfile.js",
   "engines": {
     "node": ">= 0.8.0"
   },
@@ -42,5 +41,9 @@
   },
   "keywords": [
     "gruntplugin"
+  ],
+  "files": [
+    "tasks",
+    "LICENSE-MIT"
   ]
 }
