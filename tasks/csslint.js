@@ -18,6 +18,7 @@ module.exports = function(grunt) {
     var options = this.options();
     var path = require("path");
     var absoluteFilePaths = options.absoluteFilePathsForFormatters || false;
+    var force = false;
 
     // Read CSSLint options from a specified csslintrc file.
     if (options.csslintrc) {
@@ -29,6 +30,9 @@ module.exports = function(grunt) {
 
     // merge external options with options specified in gruntfile
     options = grunt.util._.extend( options, externalOptions );
+
+    force = options.force;
+
 
     csslint.getRules().forEach(function( rule ) {
       ruleset[ rule.id ] = 1;
@@ -62,12 +66,10 @@ module.exports = function(grunt) {
         combinedResult[filepath] = result;
 
         result.messages.forEach(function( message ) {
-          grunt.log.writeln( "[".red + (typeof message.line !== "undefined" ? ( "L" + message.line ).yellow + ":".red + ( "C" + message.col ).yellow : "GENERAL".yellow) + "]".red );
-          grunt.log[ message.type === "error" ? "error" : "writeln" ]( message.message + " " + message.rule.desc + " (" + message.rule.id + ")" );
+          if (message.type === "error") {
+            hadErrors += 1;
+          }
         });
-        if ( result.messages.length ) {
-          hadErrors += 1;
-        }
       } else {
         grunt.log.writeln( "Skipping empty file " + filepath);
       }
@@ -93,10 +95,22 @@ module.exports = function(grunt) {
         }
       });
     }
+    else{
+      result.messages.forEach(function( message ) {
+        grunt.log.writeln( "[".red + (typeof message.line !== "undefined" ? ( "L" + message.line ).yellow + ":".red + ( "C" + message.col ).yellow : "GENERAL".yellow) + "]".red );
+        grunt.log[ message.type === "error" ? "error" : "writeln" ]( message.message + " " + message.rule.desc + " (" + message.rule.id + ")" );
+      });
+    }
 
-    if ( hadErrors ) {
+    if (hadErrors && !force) {
       return false;
     }
-    grunt.log.ok( this.filesSrc.length + grunt.util.pluralize(this.filesSrc.length, " file/ files") + " lint free." );
+    else if(force){
+      grunt.log.warn( this.filesSrc.length + grunt.util.pluralize(this.filesSrc.length, " file/ files") + " linted with " + hadErrors + " files containing errors.");
+    }
+    else{
+      grunt.log.ok( this.filesSrc.length + grunt.util.pluralize(this.filesSrc.length, " file/ files") + " lint free." );
+    }
+
   });
 };
