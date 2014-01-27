@@ -17,6 +17,7 @@ module.exports = function(grunt) {
     var combinedResult = {};
     var options = this.options();
     var path = require("path");
+    var chalk = require("chalk");
     var absoluteFilePaths = options.absoluteFilePathsForFormatters || false;
 
     // Read CSSLint options from a specified csslintrc file.
@@ -44,7 +45,7 @@ module.exports = function(grunt) {
     var hadErrors = 0;
     this.filesSrc.forEach(function( filepath ) {
       var file = grunt.file.read( filepath ),
-        message = "Linting " + filepath + " ...",
+        message = 'Linting ' + chalk.cyan(filepath) + '...',
         result;
 
       // skip empty files
@@ -62,14 +63,24 @@ module.exports = function(grunt) {
         combinedResult[filepath] = result;
 
         result.messages.forEach(function( message ) {
-          grunt.log.writeln( "[".red + (typeof message.line !== "undefined" ? ( "L" + message.line ).yellow + ":".red + ( "C" + message.col ).yellow : "GENERAL".yellow) + "]".red );
+          var offenderMessage;
+          if (typeof message.line !== 'undefined') {
+            offenderMessage =
+              chalk.yellow('L' + message.line) +
+              chalk.red(':') +
+              chalk.yellow('C' + message.col);
+          } else {
+            offenderMessage = chalk.yellow('GENERAL');
+          }
+
+          grunt.log.writeln(chalk.red('[') + offenderMessage + chalk.red(']'));
           grunt.log[ message.type === "error" ? "error" : "writeln" ]( message.message + " " + message.rule.desc + " (" + message.rule.id + ")" );
         });
         if ( result.messages.length ) {
           hadErrors += 1;
         }
       } else {
-        grunt.log.writeln( "Skipping empty file " + filepath);
+        grunt.log.writeln('Skipping empty file ' + chalk.cyan(filepath) + '.');
       }
 
     });

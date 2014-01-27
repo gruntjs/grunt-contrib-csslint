@@ -27,7 +27,8 @@
     "test": "grunt test --force"
   },
   "dependencies": {
-    "csslint": "~0.10.0"
+    "csslint": "~0.10.0",
+    "chalk": "~0.4.0"
   },
   "devDependencies": {
     "grunt-contrib-jshint": "~0.2.0",
