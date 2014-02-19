@@ -37,7 +37,7 @@ module.exports = function(grunt) {
           'import': 0,
           'ids': 0
         },
-        files: ['test/fixtures/invalid.css']
+        src: ['test/fixtures/invalid.css']
       },
       withReportsAbs: {
         options: {

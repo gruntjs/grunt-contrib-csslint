@@ -54,7 +54,7 @@ module.exports = function(grunt) {
         verbose.write( message );
         if (result.messages.length) {
           verbose.or.write( message );
-          grunt.log.error();
+          grunt.log.warn();
         } else {
           verbose.ok();
         }
@@ -74,7 +74,7 @@ module.exports = function(grunt) {
           }
 
           grunt.log.writeln(chalk.red('[') + offenderMessage + chalk.red(']'));
-          grunt.log[ message.type === "error" ? "error" : "writeln" ]( message.message + " " + message.rule.desc + " (" + message.rule.id + ")" );
+          grunt.log[ message.type === "error" ? "warn" : "writeln" ]( message.message + " " + message.rule.desc + " (" + message.rule.id + ")" );
         });
         if ( result.messages.length ) {
           hadErrors += 1;
@@ -105,9 +105,11 @@ module.exports = function(grunt) {
       });
     }
 
+    var files = this.filesSrc.length + grunt.util.pluralize(this.filesSrc.length, " file/ files");
     if ( hadErrors ) {
-      return false;
+      grunt.log.warn(files + " with issues.");
+    } else {
+      grunt.log.ok(files + " lint free.");
     }
-    grunt.log.ok( this.filesSrc.length + grunt.util.pluralize(this.filesSrc.length, " file/ files") + " lint free." );
   });
 };
