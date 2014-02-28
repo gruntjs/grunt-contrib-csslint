@@ -50,7 +50,9 @@ module.exports = function(grunt) {
 
       // skip empty files
       if (file.length) {
-        result = csslint.verify( file, ruleset );
+        // use copy of ruleset since CSSLint modifies it in-place when
+        // there is an embedded ruleset in the CSS file itself
+        result = csslint.verify( file, grunt.util._.extend({}, ruleset) );
         verbose.write( message );
         if (result.messages.length) {
           verbose.or.write( message );
