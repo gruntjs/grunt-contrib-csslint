@@ -31,8 +31,14 @@ module.exports = function(grunt) {
     // merge external options with options specified in gruntfile
     options = grunt.util._.extend( options, externalOptions );
 
+    // if we have disabled explicitly unspecified rules
+    var defaultDisabled = options['*'] === false;
+    delete options['*'];
+
     csslint.getRules().forEach(function( rule ) {
-      ruleset[ rule.id ] = 1;
+      if ( options[ rule.id ] || ! defaultDisabled ) {
+        ruleset[ rule.id ] = 1;
+      }
     });
 
     for ( var rule in options ) {
