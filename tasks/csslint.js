@@ -9,15 +9,16 @@
 'use strict';
 
 module.exports = function(grunt) {
-  grunt.registerMultiTask( "csslint", "Lint CSS files with csslint", function() {
-    var csslint = require( "csslint" ).CSSLint;
+  grunt.registerMultiTask( 'csslint', 'Lint CSS files with csslint', function() {
+    var csslint = require( 'csslint' ).CSSLint;
     var ruleset = {};
     var verbose = grunt.verbose;
     var externalOptions = {};
     var combinedResult = {};
     var options = this.options();
-    var path = require("path");
-    var chalk = require("chalk");
+    var path = require('path');
+    var _ = require('lodash');
+    var chalk = require('chalk');
     var absoluteFilePaths = options.absoluteFilePathsForFormatters || false;
 
     // Read CSSLint options from a specified csslintrc file.
@@ -29,7 +30,7 @@ module.exports = function(grunt) {
     }
 
     // merge external options with options specified in gruntfile
-    options = grunt.util._.extend( options, externalOptions );
+    options = _.assign( options, externalOptions );
 
     // if we have disabled explicitly unspecified rules
     var defaultDisabled = options['*'] === false;
@@ -80,7 +81,7 @@ module.exports = function(grunt) {
           }
 
           grunt.log.writeln(chalk.red('[') + offenderMessage + chalk.red(']'));
-          grunt.log[ message.type === "error" ? "error" : "writeln" ]( message.message + " " + message.rule.desc + " (" + message.rule.id + ")" );
+          grunt.log[ message.type === 'error' ? 'error' : 'writeln' ]( message.message + ' ' + message.rule.desc + ' (' + message.rule.id + ')' );
         });
         if ( result.messages.length ) {
           hadErrors += 1;
@@ -92,13 +93,13 @@ module.exports = function(grunt) {
     });
 
     // formatted output
-    if (options.formatters && grunt.util._.isArray( options.formatters )) {
+    if (options.formatters && Array.isArray( options.formatters )) {
       options.formatters.forEach(function ( formatterDefinition ) {
         if (formatterDefinition.id && formatterDefinition.dest) {
           var formatter = csslint.getFormatter( formatterDefinition.id );
           if (formatter) {
             var output = formatter.startFormat();
-            grunt.util._.each( combinedResult, function ( result, filename ) {
+            _.each( combinedResult, function ( result, filename ) {
               if (absoluteFilePaths) {
                 filename = path.resolve(filename);
               }
@@ -114,6 +115,6 @@ module.exports = function(grunt) {
     if ( hadErrors ) {
       return false;
     }
-    grunt.log.ok( this.filesSrc.length + grunt.util.pluralize(this.filesSrc.length, " file/ files") + " lint free." );
+    grunt.log.ok( this.filesSrc.length + grunt.util.pluralize(this.filesSrc.length, ' file/ files') + ' lint free.' );
   });
 };
