@@ -19,12 +19,12 @@ module.exports = function(grunt) {
     var path = require('path');
     var _ = require('lodash');
     var chalk = require('chalk');
-    var readCSSLintRc = require('../utils/readCSSLintRc');
+    var parsecsslintrc = require('../utils/parsecsslintrc');
     var absoluteFilePaths = options.absoluteFilePathsForFormatters || false;
 
     // Read CSSLint options from a specified csslintrc file.
     if (options.csslintrc) {
-      externalOptions = readCSSLintRc(grunt.file.read( options.csslintrc ));
+      externalOptions = parsecsslintrc(grunt.file.read( options.csslintrc ));
       // delete csslintrc option to not confuse csslint if a future release
       // implements a rule or options on its own
       delete options.csslintrc;

@@ -1,0 +1,9 @@
+//comment
+
+{/*comment*/
+	id: true, //jshint ignore:line
+	imports: true/* jshint ignore:line */,
+	"important"/*do not use importants*/:true
+}// comment
+
+/*comment*/

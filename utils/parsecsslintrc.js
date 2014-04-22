@@ -24,7 +24,7 @@
                 "rule-id": true|false
              }
 
-    Bonus, unstrict json format for .csslitrc to enable comments.
+    Bonus, unstrict json format for .csslitrc to enable comments and loose syntax.
 */
 
 var
@@ -32,12 +32,19 @@ var
 
 function guessType(str) {
     var type,
-        evalStr;
+        evalStr,
+        nativeErrors = [
+            'ReferenceError: Invalid left-hand side in assignment',//--a=b
+            'SyntaxError: Unexpected token }',//--a=b,c
+            'SyntaxError: Unexpected token ,',//--a=b,c,d
+            'SyntaxError: Unexpected identifier',//--a=b --c=d
+            'SyntaxError: Unexpected token --'//--a=b,c --d=e
+        ];
 
     try {
-        evalStr = ([].map.constructor('return ' + str)());
+        evalStr = ([].map.constructor('return {a:' + str + '\r\n}.a')());
     } catch (e) {
-        if (e.message === 'Invalid left-hand side in assignment') {
+        if ( nativeErrors.indexOf(e.toString()) !== -1 ) {
             rc = str;
             type = 'text';
         }
@@ -63,16 +70,20 @@ function readOptionsAsText() {
         optionName,
         optionValues,
         optionValuesLen,
-        optionsOut = [],
+        optionsOut,
         i,
         j,
         out = {};
 
     for (i=0; i<splitrcsLen; i+=1) {
         splitrc = splitrcs[i].split('=');
-        optionName = splitrc[0];
-        optionValues = splitrc.split(',');
+        if (splitrc.length < 2) {
+            continue;
+        }
+        optionName = splitrc[0].substring(2);
+        optionValues = splitrc[1].split(',');
         optionValuesLen = optionValues.length;
+        optionsOut = [];
 
         for(j=0; j<optionValuesLen; j += 1) {
             optionsOut.push(optionValues[j]);
@@ -106,16 +117,16 @@ function normalizeForGrunt(obj) {
                 // sounds like grunt task friendly
                 out = obj;
                 break;
-            } else if ( Array.isArrray(objits) ) {
+            } else if ( Array.isArray(objits) ) {
                 objitsLen = objits.length;
 
                 for(i=0; i<objitsLen; i+=1) {
                     option = objits[i];
-                    out[option] = true;
+                    out[option] = (objix === 'ignores'? false: true);
                 }
 
             } else {
-                throw new Error('Could not normalize .csslintrc for grunt task.');
+                throw new Error('Could not normalize .csslintrc.');
             }
         }
 

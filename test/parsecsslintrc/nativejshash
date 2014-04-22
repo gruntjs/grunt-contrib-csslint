@@ -1,0 +1,11 @@
+//comment
+{
+	//comment
+	errors:/*jshint ignore:line */
+		[
+			"id",//disallow ids
+			"imports"/*disallow imports*/
+		],
+		/* comment */"warning":["important"]// comment
+}
+
