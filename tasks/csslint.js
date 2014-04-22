@@ -7,6 +7,7 @@
  */
 
 'use strict';
+var parsecsslintrc = require('./utils/parsecsslintrc');
 
 module.exports = function(grunt) {
   grunt.registerMultiTask( 'csslint', 'Lint CSS files with csslint', function() {
@@ -19,7 +20,6 @@ module.exports = function(grunt) {
     var path = require('path');
     var _ = require('lodash');
     var chalk = require('chalk');
-    var parsecsslintrc = require('../utils/parsecsslintrc');
     var absoluteFilePaths = options.absoluteFilePathsForFormatters || false;
 
     // Read CSSLint options from a specified csslintrc file.

@@ -122,7 +122,7 @@ function normalizeForGrunt(obj) {
 
                 for(i=0; i<objitsLen; i+=1) {
                     option = objits[i];
-                    out[option] = (objix === 'ignores'? false: true);
+                    out[option] = (objix === 'ignore'? false: true);
                 }
 
             } else {

@@ -2,7 +2,7 @@
 
 var
     grunt = require('grunt'),
-    parsecsslintrc = require('../utils/parsecsslintrc'),
+    parsecsslintrc = require('../tasks/utils/parsecsslintrc'),
     expecting = JSON.stringify(grunt.file.readJSON('./test/parsecsslintrc/expecting')),
     testobj = {};
 
