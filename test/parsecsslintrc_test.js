@@ -2,9 +2,36 @@
 
 var
     grunt = require('grunt'),
+    _ = require('lodash'),
     parsecsslintrc = require('../tasks/utils/parsecsslintrc'),
-    expecting = JSON.stringify(grunt.file.readJSON('./test/parsecsslintrc/expecting')),
+    expecting = grunt.file.readJSON('./test/parsecsslintrc/expecting'),
+    expectingSize = _.size(expecting),
+
     testobj = {};
+
+function sameAsExpecting(hash) {
+    var
+        isSameSize = expectingSize === _.size(hash),
+        hasSameAttrs,
+        ix;
+
+    if ( isSameSize ) {
+
+        for (ix in expecting) {
+            if ( expecting.hasOwnProperty(ix) ) {
+
+                hasSameAttrs = (expecting[ix] === hash[ix]);
+
+                if ( !hasSameAttrs ) {
+                    break;
+                }
+            }
+        }
+    }
+
+    return isSameSize && hasSameAttrs;
+
+}
 
 module.exports = (function() {
     grunt.file.recurse('./test/parsecsslintrc/', function(abspath) {
@@ -13,9 +40,9 @@ module.exports = (function() {
             testobj[abspath] = function(test) {
                 var
                     file = grunt.file.read(abspath),
-                    result = JSON.stringify(parsecsslintrc(file));
+                    result = parsecsslintrc(file);
 
-                test.equal(result, expecting);
+                test.ok(sameAsExpecting(result), 'Resulted json has to match expected.');
                 test.done();
             };
         }

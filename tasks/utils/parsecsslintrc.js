@@ -76,7 +76,7 @@ function readOptionsAsText() {
         out = {};
 
     for (i=0; i<splitrcsLen; i+=1) {
-        splitrc = splitrcs[i].split('=');
+        splitrc = splitrcs[i]/*.trim()*/.split('=');
         if (splitrc.length < 2) {
             continue;
         }

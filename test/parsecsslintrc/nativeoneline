@@ -1,1 +1,1 @@
---errors=id,imports --warning=important
+   --errors=id,imports arbitrary string   --warning=important
