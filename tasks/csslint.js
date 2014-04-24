@@ -7,6 +7,7 @@
  */
 
 'use strict';
+var parsecsslintrc = require('./utils/parsecsslintrc');
 
 module.exports = function(grunt) {
   grunt.registerMultiTask( 'csslint', 'Lint CSS files with csslint', function() {
@@ -23,7 +24,7 @@ module.exports = function(grunt) {
 
     // Read CSSLint options from a specified csslintrc file.
     if (options.csslintrc) {
-      externalOptions = grunt.file.readJSON( options.csslintrc );
+      externalOptions = parsecsslintrc(grunt.file.read( options.csslintrc ));
       // delete csslintrc option to not confuse csslint if a future release
       // implements a rule or options on its own
       delete options.csslintrc;

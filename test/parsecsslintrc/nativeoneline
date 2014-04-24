@@ -1,0 +1,1 @@
+   --errors=id,imports   --warnings=important --ignore=box-model
