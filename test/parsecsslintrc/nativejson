@@ -4,5 +4,8 @@
 			"id",
 			"imports"
 		],
-	"warning":["important"]
+	"ignore": [
+		"box-model"
+	],
+	"warnings":["important"]
 }

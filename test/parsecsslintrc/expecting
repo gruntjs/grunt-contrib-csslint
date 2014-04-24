@@ -1,5 +1,6 @@
 {
 	"id": true,
 	"imports": true,
-	"important": true
+	"important": true,
+	"box-model": false
 }
