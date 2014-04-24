@@ -23,39 +23,20 @@
              {
                 "rule-id": true|false
              }
-
-    Bonus, unstrict json format for .csslitrc to enable comments and loose syntax.
 */
 
 var
     rc;
 
 function guessType(str) {
-    var type,
-        evalStr,
-        nativeErrors = [
-            'ReferenceError: Invalid left-hand side in assignment',//--a=b
-            'SyntaxError: Unexpected token }',//--a=b,c
-            'SyntaxError: Unexpected token ,',//--a=b,c,d
-            'SyntaxError: Unexpected identifier',//--a=b --c=d
-            'SyntaxError: Unexpected token --'//--a=b,c --d=e
-        ];
+    var type;
 
     try {
-        evalStr = ([].map.constructor('return {a:' + str + '\r\n}.a')());
+        rc = JSON.parse(str);
+        type = 'json';
     } catch (e) {
-        if ( nativeErrors.indexOf(e.toString()) !== -1 ) {
             rc = str;
             type = 'text';
-        }
-    }
-
-    if (typeof evalStr === 'object') {
-        try {
-            rc = JSON.stringify(evalStr);
-            type = 'json';
-        } catch (e) {
-        }
     }
 
     return type;
@@ -97,7 +78,7 @@ function readOptionsAsText() {
 }
 
 function readOptionsAsJson() {
-    return JSON.parse(rc);
+    return rc;
 }
 
 function normalizeForGrunt(obj) {
