@@ -53,6 +53,7 @@ module.exports = function(grunt) {
     this.filesSrc.forEach(function( filepath ) {
       var file = grunt.file.read( filepath ),
         message = 'Linting ' + chalk.cyan(filepath) + '...',
+        failed = false,
         result;
 
       // skip empty files
@@ -61,7 +62,15 @@ module.exports = function(grunt) {
         verbose.write( message );
         if (result.messages.length) {
           verbose.or.write( message );
-          grunt.log.error();
+          failed = result.messages.reduce(function(failed, message){
+            return failed || message.type === "error";
+          }, failed);
+          if (failed) {
+            hadErrors += 1;
+            grunt.log.error();
+          } else {
+            grunt.log.writeln(chalk.yellow('WARNING'));
+          }
         } else {
           verbose.ok();
         }
@@ -83,9 +92,6 @@ module.exports = function(grunt) {
           grunt.log.writeln(chalk.red('[') + offenderMessage + chalk.red(']'));
           grunt.log[ message.type === 'error' ? 'error' : 'writeln' ]( message.message + ' ' + message.rule.desc + ' (' + message.rule.id + ')' );
         });
-        if ( result.messages.length ) {
-          hadErrors += 1;
-        }
       } else {
         grunt.log.writeln('Skipping empty file ' + chalk.cyan(filepath) + '.');
       }
