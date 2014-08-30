@@ -76,9 +76,9 @@ module.exports = function(grunt) {
 
   // Whenever the "test" task is run, first clean the "report" dir then run this
   // plugin's task(s), manually check the output, then run `grunt csslint:all` and `grunt csslint:custom` to look at lint errors
-  grunt.registerTask('test', ['clean', 'csslint', 'nodeunit']);
+  grunt.registerTask('test', ['jshint', 'clean', 'csslint', 'nodeunit']);
 
   // By default, lint and run all tests.
-  grunt.registerTask('default', ['jshint', 'test', 'build-contrib']);
+  grunt.registerTask('default', ['test', 'build-contrib']);
 
 };
