@@ -31,6 +31,7 @@ module.exports = function(grunt) {
     csslint: {
       valid: 'test/fixtures/valid.css',
       empty: 'test/fixtures/empty.css',
+      warning: 'test/fixtures/warning.css',
       all: 'test/fixtures/*.css',
       custom: {
         options: {
@@ -79,6 +80,6 @@ module.exports = function(grunt) {
   grunt.registerTask('test', ['jshint', 'clean', 'csslint', 'nodeunit']);
 
   // By default, lint and run all tests.
-  grunt.registerTask('default', ['test', 'build-contrib']);
+  grunt.registerTask('default', ['jshint', 'build-contrib']);
 
 };

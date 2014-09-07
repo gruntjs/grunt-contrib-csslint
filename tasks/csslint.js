@@ -81,11 +81,14 @@ module.exports = function(grunt) {
           }
 
           grunt.log.writeln(chalk.red('[') + offenderMessage + chalk.red(']'));
-          grunt.log[ message.type === 'error' ? 'error' : 'writeln' ]( message.message + ' ' + message.rule.desc + ' (' + message.rule.id + ')' );
+          grunt.log[ message.type === 'error' ? 'error' : 'writeln' ](
+              message.type.toUpperCase() + ': ' + message.message + ' ' + message.rule.desc + ' (' + message.rule.id + ')'
+          );
+
+          if (message.type === 'error' ) {
+            hadErrors += 1;
+          }
         });
-        if ( result.messages.length ) {
-          hadErrors += 1;
-        }
       } else {
         grunt.log.writeln('Skipping empty file ' + chalk.cyan(filepath) + '.');
       }

@@ -1,3 +1,8 @@
+v0.3.0:
+  date: 2014-09-07
+  changes:
+    - CSSLint "warnings" no longer fail build.
+    - Updated dependencies.
 v0.2.0:
   date: 2013-12-02
   changes:
