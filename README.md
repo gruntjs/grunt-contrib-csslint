@@ -1,4 +1,4 @@
-# grunt-contrib-csslint v0.3.0 [![Build Status: Linux](https://travis-ci.org/gruntjs/grunt-contrib-csslint.png?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-csslint)
+# grunt-contrib-csslint v0.3.1 [![Build Status: Linux](https://travis-ci.org/gruntjs/grunt-contrib-csslint.png?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-csslint)
 
 > Lint CSS files.
 
@@ -191,6 +191,7 @@ csslint: {
 
 ## Release History
 
+ * 2014-09-07   v0.3.1   Show affected browsers in errors and warnings.
  * 2014-09-07   v0.3.0   CSSLint "warnings" no longer fail build. Updated dependencies.
  * 2013-12-02   v0.2.0   Bump to csslint 0.10.0
  * 2013-04-02   v0.1.2   Allow absolute filepaths in reports.
@@ -201,4 +202,4 @@ csslint: {
 
 Task submitted by [Jörn Zaefferer](http://bassistance.de)
 
-*This file was generated on Sun Sep 07 2014 19:38:01.*
+*This file was generated on Sun Sep 07 2014 19:49:24.*

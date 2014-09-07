@@ -1,3 +1,7 @@
+v0.3.1:
+  date: 2014-09-07
+  changes:
+    - Show affected browsers in errors and warnings.
 v0.3.0:
   date: 2014-09-07
   changes:
