@@ -128,6 +128,12 @@ Default: `false`
 
 Only output errors.
 
+###### extraRules
+Type: `array|String`
+Default value: `null`
+
+Specifies the file paths/patterns containing extra csslint rules. The files need to be commonjs modules that export the csslint rule object which will be given to csslint.addRule(...)
+
 ### Usage Examples
 
 ```js
