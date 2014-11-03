@@ -20,6 +20,7 @@ module.exports = function(grunt) {
     var _ = require('lodash');
     var chalk = require('chalk');
     var absoluteFilePaths = options.absoluteFilePathsForFormatters || false;
+	var types = options.types || [ 'error', 'warning', 'info' ];
 
     // Read CSSLint options from a specified csslintrc file.
     if (options.csslintrc) {
@@ -59,6 +60,12 @@ module.exports = function(grunt) {
       if (file.length) {
         result = csslint.verify( file, ruleset );
         verbose.write( message );
+
+		// filter messages based on types we are looking for
+        result.messages = _.filter( result.messages, function( m ){
+          return _.contains( types , m.type.toLowerCase() );
+        });
+
         if (result.messages.length) {
           verbose.or.write( message );
           grunt.log.error();

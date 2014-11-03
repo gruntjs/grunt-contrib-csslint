@@ -116,6 +116,12 @@ Default value: `false`
 
 If the absoluteFilePathsForFormatters option is specified and set to `true`, the file names in the generated reports are absolute.
 
+###### types 
+Type: `array`
+Default value: `[ 'error', 'warning', 'info' ]`
+
+Limit the types of responses.  Usefull for removing warnings and info in some circumstances.
+
 ### Usage Examples
 
 ```js
