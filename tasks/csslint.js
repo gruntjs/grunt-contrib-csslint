@@ -20,7 +20,7 @@ module.exports = function(grunt) {
     var _ = require('lodash');
     var chalk = require('chalk');
     var absoluteFilePaths = options.absoluteFilePathsForFormatters || false;
-	var types = options.types || [ 'error', 'warning', 'info' ];
+    var types = options.types || [ 'error', 'warning', 'info' ];
 
     // Read CSSLint options from a specified csslintrc file.
     if (options.csslintrc) {
