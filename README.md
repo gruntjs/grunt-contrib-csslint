@@ -34,41 +34,41 @@ Any specified option will be passed through directly to [csslint](http://csslint
 
 For the current csslint version, these rules are available:
 
-* important
-* adjoining-classes
-* known-properties
-* box-sizing
-* box-model
-* overqualified-elements
-* display-property-grouping
-* bulletproof-font-face
-* compatible-vendor-prefixes
-* regex-selectors
+* [important](https://github.com/CSSLint/csslint/wiki/Disallow-%21important)
+* [adjoining-classes](https://github.com/CSSLint/csslint/wiki/Disallow-adjoining-classes)
+* [known-properties](https://github.com/CSSLint/csslint/wiki/Require-use-of-known-properties)
+* [box-sizing](https://github.com/CSSLint/csslint/wiki/Disallow-box-sizing)
+* [box-model](https://github.com/CSSLint/csslint/wiki/Beware-of-box-model-size)
+* [overqualified-elements](https://github.com/CSSLint/csslint/wiki/Disallow-overqualified-elements)
+* [display-property-grouping](https://github.com/CSSLint/csslint/wiki/Require-properties-appropriate-for-display)
+* [bulletproof-font-face](https://github.com/CSSLint/csslint/wiki/Bulletproof-font-face)
+* [compatible-vendor-prefixes](https://github.com/CSSLint/csslint/wiki/Require-compatible-vendor-prefixes)
+* [regex-selectors](https://github.com/CSSLint/csslint/wiki/Disallow-selectors-that-look-like-regular-expressions)
 * errors
-* duplicate-background-images
-* duplicate-properties
-* empty-rules
+* [duplicate-background-images](https://github.com/CSSLint/csslint/wiki/Disallow-duplicate-background-images)
+* [duplicate-properties](https://github.com/CSSLint/csslint/wiki/Disallow-duplicate-properties)
+* [empty-rules](https://github.com/CSSLint/csslint/wiki/Disallow-empty-rules)
 * selector-max-approaching
-* gradients
-* fallback-colors
-* font-sizes
-* font-faces
-* floats
-* star-property-hack
-* outline-none
-* import
-* ids
-* underscore-property-hack
+* [gradients](https://github.com/CSSLint/csslint/wiki/Require-all-gradient-definitions)
+* [fallback-colors](https://github.com/CSSLint/csslint/wiki/Require-fallback-colors)
+* [font-sizes](https://github.com/CSSLint/csslint/wiki/Don%27t-use-too-many-font-size-declarations)
+* [font-faces](https://github.com/CSSLint/csslint/wiki/Don%27t-use-too-many-web-fonts)
+* [floats](https://github.com/CSSLint/csslint/wiki/Disallow-too-many-floats)
+* [star-property-hack](https://github.com/CSSLint/csslint/wiki/Disallow-star-hack)
+* [outline-none](https://github.com/CSSLint/csslint/wiki/Disallow-outline%3Anone)
+* [import](https://github.com/CSSLint/csslint/wiki/Disallow-%40import)
+* [ids](https://github.com/CSSLint/csslint/wiki/Disallow-IDs-in-selectors)
+* [underscore-property-hack](https://github.com/CSSLint/csslint/wiki/Disallow-underscore-hack)
 * rules-count
-* qualified-headings
+* [qualified-headings](https://github.com/CSSLint/csslint/wiki/Disallow-qualified-headings)
 * selector-max
-* shorthand
-* text-indent
-* unique-headings
-* universal-selector
-* unqualified-attributes
-* vendor-prefix
-* zero-units
+* [shorthand](https://github.com/CSSLint/csslint/wiki/Require-shorthand-properties)
+* [text-indent](https://github.com/CSSLint/csslint/wiki/Disallow-negative-text-indent)
+* [unique-headings](https://github.com/CSSLint/csslint/wiki/Headings-should-only-be-defined-once)
+* [universal-selector](https://github.com/CSSLint/csslint/wiki/Disallow-universal-selector)
+* [unqualified-attributes](https://github.com/CSSLint/csslint/wiki/Disallow-unqualified-attribute-selectors)
+* [vendor-prefix](https://github.com/CSSLint/csslint/wiki/Require-standard-property-with-vendor-prefix)
+* [zero-units](https://github.com/CSSLint/csslint/wiki/Disallow-units-for-zero-values)
 
 For an explanation of those rules, [check the csslint wiki](https://github.com/stubbornella/csslint/wiki/Rules).
 
