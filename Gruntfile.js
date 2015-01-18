@@ -57,6 +57,15 @@ module.exports = function(grunt) {
           ]
         },
         src: 'test/fixtures/*.css'
+      },
+      withComments: {
+        options: {
+          csslintrc: 'test/comments.csslintrc',
+          formatters: [
+            {id: 'csslint-xml', dest: 'tmp/csslintComments.xml'}
+          ]
+        },
+        src: 'test/fixtures/*.css'
       }
     },
 

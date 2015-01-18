@@ -1,0 +1,10 @@
+{
+  /**
+   * block comment
+   */
+
+   // single-line comment
+
+   "import": 0, // inline comment
+   "ids": 0
+}
