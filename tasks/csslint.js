@@ -11,6 +11,7 @@
 module.exports = function(grunt) {
   grunt.registerMultiTask( 'csslint', 'Lint CSS files with csslint', function() {
     var csslint = require( 'csslint' ).CSSLint;
+    var stripJsonComments = require( 'strip-json-comments' );
     var ruleset = {};
     var verbose = grunt.verbose;
     var externalOptions = {};
@@ -23,7 +24,8 @@ module.exports = function(grunt) {
 
     // Read CSSLint options from a specified csslintrc file.
     if (options.csslintrc) {
-      externalOptions = grunt.file.readJSON( options.csslintrc );
+      var contents = grunt.file.read( options.csslintrc );
+      externalOptions = JSON.parse( stripJsonComments( contents ) );
       // delete csslintrc option to not confuse csslint if a future release
       // implements a rule or options on its own
       delete options.csslintrc;
