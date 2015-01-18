@@ -1,19 +1,12 @@
 {
   "name": "grunt-contrib-csslint",
-  "description": "Lint CSS files.",
+  "description": "Lint CSS files",
   "version": "0.3.1",
-  "homepage": "https://github.com/gruntjs/grunt-contrib-csslint",
   "author": {
     "name": "Grunt Team",
     "url": "http://gruntjs.com/"
   },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/gruntjs/grunt-contrib-csslint.git"
-  },
-  "bugs": {
-    "url": "https://github.com/gruntjs/grunt-contrib-csslint/issues"
-  },
+  "repository": "grunt/grunt-contrib-csslint",
   "licenses": [
     {
       "type": "MIT",
@@ -21,29 +14,33 @@
     }
   ],
   "engines": {
-    "node": ">= 0.10.0"
+    "node": ">=0.10.0"
   },
   "scripts": {
     "test": "grunt test --force"
   },
   "dependencies": {
-    "chalk": "~0.5.1",
-    "csslint": "~0.10.0",
-    "lodash": "~2.4.1",
-    "strip-json-comments": "~1.0.2"
+    "chalk": "^0.5.1",
+    "csslint": "^0.10.0",
+    "lodash": "^2.4.1",
+    "strip-json-comments": "^1.0.2"
   },
   "devDependencies": {
-    "grunt-contrib-jshint": "~0.10.0",
-    "grunt-contrib-nodeunit": "~0.4.1",
-    "grunt-contrib-clean": "~0.6.0",
-    "grunt-contrib-internal": "~0.4.2",
-    "grunt": "~0.4.0"
+    "grunt": "^0.4.0",
+    "grunt-cli": "^0.1.13",
+    "grunt-contrib-clean": "^0.6.0",
+    "grunt-contrib-internal": "^0.4.2",
+    "grunt-contrib-jshint": "^0.10.0",
+    "grunt-contrib-nodeunit": "^0.4.1"
   },
   "peerDependencies": {
-    "grunt": "~0.4.0"
+    "grunt": ">=0.4.0"
   },
   "keywords": [
-    "gruntplugin"
+    "gruntplugin",
+    "css",
+    "lint",
+    "csslint"
   ],
   "files": [
     "tasks",
