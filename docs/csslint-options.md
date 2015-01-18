@@ -47,41 +47,48 @@ For an explanation of those rules, [check the csslint wiki](https://github.com/s
 ```bash
 node -e "require('csslint').CSSLint.getRules().forEach(function(x) { console.log(x.id) })"
 ```
+
 A few additional options are supported:
 
-#### csslintrc
-Type: `String`
-Default value: `null`
 
-If this filename is specified, options and globals defined therein will be used. Task and target options override the options within the `csslintrc` file. The `csslint` file must be valid JSON and looks something like this:
+#### csslintrc
+
+Type: `string`  
+Default: `null`
+
+If this filename is specified, options and globals defined therein will be used. Task and target options override the options within the `.csslintrc` file. It should be a JSON file, but it supports comments:
 
 ```json
 {
+  // unicorns
   "qualified-headings": true,
   "unique-headings": true,
   "known-properties": false
 }
 ```
+
 #### formatters
-Type: `array`
-Default value: `null`
+
+Type: `array`  
+Default: `null`
 
 If the formatters options is specified, the grunt csslint task is able to use the
 all formatters provided by csslint.
 
 For the current csslint version, the following formatters are supported:
 
-* text
-* compact
-* lint-xml
-* csslint-xml
-* checkstyle-xml
-* junit-xml
+- `text`
+- `compact`
+- `lint-xml`
+- `csslint-xml`
+- `checkstyle-xml`
+- `junit-xml`
 
 For an explanation of those formatters, [check the csslint wiki](https://github.com/stubbornella/csslint/wiki/Command-line-interface), section Options/--format.
 
 #### absoluteFilePathsForFormatters
-Type: `Boolean`
-Default value: `false`
+
+Type: `boolean`  
+Default: `false`
 
 If the absoluteFilePathsForFormatters option is specified and set to `true`, the file names in the generated reports are absolute.

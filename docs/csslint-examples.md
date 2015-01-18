@@ -18,6 +18,7 @@ csslint: {
 ```
 
 #### Loading rules from an external file
+
 ```js
 csslint: {
   options: {
@@ -39,6 +40,7 @@ csslint: {
 ```
 
 #### Specifiying output formatters
+
 ```js
 csslint: {
   options: {
