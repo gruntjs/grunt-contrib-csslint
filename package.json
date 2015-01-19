@@ -6,7 +6,7 @@
     "name": "Grunt Team",
     "url": "http://gruntjs.com/"
   },
-  "repository": "grunt/grunt-contrib-csslint",
+  "repository": "gruntjs/grunt-contrib-csslint",
   "licenses": [
     {
       "type": "MIT",
