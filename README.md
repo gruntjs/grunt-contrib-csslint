@@ -1,4 +1,4 @@
-# grunt-contrib-csslint v0.4.0 [![Build Status: Linux](https://travis-ci.org/grunt/grunt-contrib-csslint.svg?branch=master)](https://travis-ci.org/grunt/grunt-contrib-csslint)
+# grunt-contrib-csslint v0.4.0 [![Build Status: Linux](https://travis-ci.org/gruntjs/grunt-contrib-csslint.svg?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-csslint)
 
 > Lint CSS files
 
