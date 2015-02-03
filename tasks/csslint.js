@@ -60,14 +60,15 @@ module.exports = function(grunt) {
       // skip empty files
       if (file.length) {
         result = csslint.verify( file, ruleset );
-        verbose.write( message );
-        if (result.messages.length) {
-          verbose.or.write( message );
-          grunt.log.error();
-        } else {
-          verbose.ok();
+        if (!options.formatters) {
+          verbose.write(message);
+          if (result.messages.length) {
+            verbose.or.write(message);
+            grunt.log.error();
+          } else {
+            verbose.ok();
+          }
         }
-
         // store combined result for later use with formatters
         combinedResult[filepath] = result;
 
@@ -81,22 +82,23 @@ module.exports = function(grunt) {
           } else {
             offenderMessage = chalk.yellow('GENERAL');
           }
-
-          grunt.log.writeln(chalk.red('[') + offenderMessage + chalk.red(']'));
-          grunt.log[ message.type === 'error' ? 'error' : 'writeln' ](
+          if (!options.formatters) {
+            grunt.log.writeln(chalk.red('[') + offenderMessage + chalk.red(']'));
+            grunt.log[message.type === 'error' ? 'error' : 'writeln'](
               message.type.toUpperCase() + ': ' +
               message.message + ' ' +
               message.rule.desc +
               ' (' + message.rule.id + ')' +
               ' Browsers: ' + message.rule.browsers
-          );
+            );
+          }
 
           if (message.type === 'error' ) {
             hadErrors += 1;
           }
         });
       } else {
-        grunt.log.writeln('Skipping empty file ' + chalk.cyan(filepath) + '.');
+        !options.formatters && grunt.log.writeln('Skipping empty file ' + chalk.cyan(filepath) + '.');
       }
 
     });
