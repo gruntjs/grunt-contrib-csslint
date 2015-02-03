@@ -121,7 +121,7 @@ module.exports = function(grunt) {
       });
     }
 
-    if ( hadErrors ) {
+    if ( hadErrors && !options.force) {
       return false;
     }
     grunt.log.ok( this.filesSrc.length + grunt.util.pluralize(this.filesSrc.length, ' file/ files') + ' lint free.' );
