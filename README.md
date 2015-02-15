@@ -121,6 +121,13 @@ Default: `false`
 
 If the absoluteFilePathsForFormatters option is specified and set to `true`, the file names in the generated reports are absolute.
 
+###### quiet
+
+Type: `boolean`  
+Default: `false`
+
+Similar to the [CSSLint CLI](https://github.com/CSSLint/csslint/wiki/Command-line-interface#--quiet), if the quiet option is set to `true` then only errors are output to the console.
+
 ### Usage Examples
 
 ```js
