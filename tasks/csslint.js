@@ -81,16 +81,16 @@ module.exports = function(grunt) {
           } else {
             offenderMessage = chalk.yellow('GENERAL');
           }
-
-          if( !options.quiet || ( options.quiet && message.type === 'error' )) {
-			  grunt.log.writeln(chalk.red('[') + offenderMessage + chalk.red(']'));
-			  grunt.log[ message.type === 'error' ? 'error' : 'writeln' ](
-				  message.type.toUpperCase() + ': ' +
-				  message.message + ' ' +
-				  message.rule.desc +
-				  ' (' + message.rule.id + ')' +
-				  ' Browsers: ' + message.rule.browsers
-			  );
+          
+          if (!options.quiet || (options.quiet && message.type === 'error')) {
+            grunt.log.writeln(chalk.red('[') + offenderMessage + chalk.red(']'));
+            grunt.log[ message.type === 'error' ? 'error' : 'writeln' ](
+              message.type.toUpperCase() + ': ' +
+              message.message + ' ' +
+              message.rule.desc +
+              ' (' + message.rule.id + ')' +
+              ' Browsers: ' + message.rule.browsers
+            );
           }
 
           if (message.type === 'error' ) {
