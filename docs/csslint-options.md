@@ -92,3 +92,10 @@ Type: `boolean`
 Default: `false`
 
 If the absoluteFilePathsForFormatters option is specified and set to `true`, the file names in the generated reports are absolute.
+
+###### quiet
+
+Type: `boolean`  
+Default: `false`
+
+Only output errors.
