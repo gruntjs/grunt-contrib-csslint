@@ -51,7 +51,7 @@ node -e "require('csslint').CSSLint.getRules().forEach(function(x) { console.log
 A few additional options are supported:
 
 
-#### csslintrc
+## csslintrc
 
 Type: `string`  
 Default: `null`
@@ -67,7 +67,7 @@ If this filename is specified, options and globals defined therein will be used.
 }
 ```
 
-#### formatters
+## formatters
 
 Type: `array`  
 Default: `null`
@@ -86,14 +86,14 @@ For the current csslint version, the following formatters are supported:
 
 For an explanation of those formatters, [check the csslint wiki](https://github.com/stubbornella/csslint/wiki/Command-line-interface), section Options/--format.
 
-#### absoluteFilePathsForFormatters
+## absoluteFilePathsForFormatters
 
 Type: `boolean`  
 Default: `false`
 
-If the absoluteFilePathsForFormatters option is specified and set to `true`, the file names in the generated reports are absolute.
+If the `absoluteFilePathsForFormatters` option is specified and set to `true`, the file names in the generated reports are absolute.
 
-###### quiet
+## quiet
 
 Type: `boolean`  
 Default: `false`

@@ -79,7 +79,7 @@ node -e "require('csslint').CSSLint.getRules().forEach(function(x) { console.log
 A few additional options are supported:
 
 
-###### csslintrc
+#### csslintrc
 
 Type: `string`  
 Default: `null`
@@ -95,7 +95,7 @@ If this filename is specified, options and globals defined therein will be used.
 }
 ```
 
-###### formatters
+#### formatters
 
 Type: `array`  
 Default: `null`
@@ -114,12 +114,19 @@ For the current csslint version, the following formatters are supported:
 
 For an explanation of those formatters, [check the csslint wiki](https://github.com/stubbornella/csslint/wiki/Command-line-interface), section Options/--format.
 
-###### absoluteFilePathsForFormatters
+#### absoluteFilePathsForFormatters
 
 Type: `boolean`  
 Default: `false`
 
-If the absoluteFilePathsForFormatters option is specified and set to `true`, the file names in the generated reports are absolute.
+If the `absoluteFilePathsForFormatters` option is specified and set to `true`, the file names in the generated reports are absolute.
+
+#### quiet
+
+Type: `boolean`  
+Default: `false`
+
+Only output errors.
 
 ### Usage Examples
 
@@ -140,7 +147,7 @@ csslint: {
 }
 ```
 
-###### Loading rules from an external file
+#### Loading rules from an external file
 
 ```js
 csslint: {
@@ -162,7 +169,7 @@ csslint: {
 }
 ```
 
-###### Specifiying output formatters
+#### Specifiying output formatters
 
 ```js
 csslint: {
@@ -182,7 +189,7 @@ csslint: {
 }
 ```
 
-###### Using absolute file paths in the output formatters
+#### Using absolute file paths in the output formatters
 
 ```js
 csslint: {
@@ -211,4 +218,4 @@ csslint: {
 
 Task submitted by [Jörn Zaefferer](http://bassistance.de)
 
-*This file was generated on Sun Jan 18 2015 16:06:43.*
+*This file was generated on Tue Feb 24 2015 22:08:17.*

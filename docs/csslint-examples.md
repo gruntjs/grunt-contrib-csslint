@@ -17,7 +17,7 @@ csslint: {
 }
 ```
 
-#### Loading rules from an external file
+## Loading rules from an external file
 
 ```js
 csslint: {
@@ -39,7 +39,7 @@ csslint: {
 }
 ```
 
-#### Specifiying output formatters
+## Specifiying output formatters
 
 ```js
 csslint: {
@@ -59,7 +59,7 @@ csslint: {
 }
 ```
 
-#### Using absolute file paths in the output formatters
+## Using absolute file paths in the output formatters
 
 ```js
 csslint: {
