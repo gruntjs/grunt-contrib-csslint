@@ -54,5 +54,20 @@ exports.csslint = {
     test.equal(grunt.file.isPathAbsolute(path), false, 'should generate a relative file path.');
 
     test.done();
+  },
+  withCustomRules: function(test) {
+    // check if reports were generated
+    test.ok(grunt.file.isDir('tmp'), 'should create a folder "report".');
+    test.ok(grunt.file.exists('tmp/csslintWithCustomRules.xml'), 'should create a checkstyle report.');
+
+    // check if the file names in the reports are absolute
+    var checkstyleFile = grunt.file.read('tmp/csslintWithCustomRules.xml');
+    var path = checkstyleFile.substring(checkstyleFile.indexOf('file name="') + 'file name="'.length, checkstyleFile.indexOf('duplicate.css') + 'duplicate.css'.length);
+
+    test.ok(grunt.file.exists(path), 'should reference the right file.');
+    test.ok(grunt.file.isFile(path), 'should reference the right file.');
+    test.equal(grunt.file.isPathAbsolute(path), false, 'should generate a relative file path.');
+
+    test.done();
   }
 };
