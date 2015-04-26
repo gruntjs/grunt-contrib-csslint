@@ -9,9 +9,9 @@
 'use strict';
 
 module.exports = function(grunt) {
-  grunt.registerMultiTask( 'csslint', 'Lint CSS files with csslint', function() {
-    var csslint = require( 'csslint' ).CSSLint;
-    var stripJsonComments = require( 'strip-json-comments' );
+  grunt.registerMultiTask('csslint', 'Lint CSS files with csslint', function() {
+    var csslint = require('csslint').CSSLint;
+    var stripJsonComments = require('strip-json-comments');
     var ruleset = {};
     var verbose = grunt.verbose;
     var externalOptions = {};
@@ -24,45 +24,45 @@ module.exports = function(grunt) {
 
     // Read CSSLint options from a specified csslintrc file.
     if (options.csslintrc) {
-      var contents = grunt.file.read( options.csslintrc );
-      externalOptions = JSON.parse( stripJsonComments( contents ) );
+      var contents = grunt.file.read(options.csslintrc);
+      externalOptions = JSON.parse(stripJsonComments(contents));
       // delete csslintrc option to not confuse csslint if a future release
       // implements a rule or options on its own
       delete options.csslintrc;
     }
 
     // merge external options with options specified in gruntfile
-    options = _.assign( options, externalOptions );
+    options = _.assign(options, externalOptions);
 
     // if we have disabled explicitly unspecified rules
     var defaultDisabled = options['*'] === false;
     delete options['*'];
 
-    csslint.getRules().forEach(function( rule ) {
-      if ( options[ rule.id ] || ! defaultDisabled ) {
-        ruleset[ rule.id ] = 1;
+    csslint.getRules().forEach(function(rule) {
+      if (options[rule.id] || !defaultDisabled) {
+        ruleset[rule.id] = 1;
       }
     });
 
-    for ( var rule in options ) {
-      if ( !options[ rule ] ) {
+    for (var rule in options) {
+      if (!options[rule]) {
         delete ruleset[rule];
       } else {
-        ruleset[ rule ] = options[ rule ];
+        ruleset[rule] = options[rule];
       }
     }
     var hadErrors = 0;
-    this.filesSrc.forEach(function( filepath ) {
-      var file = grunt.file.read( filepath ),
+    this.filesSrc.forEach(function(filepath) {
+      var file = grunt.file.read(filepath),
         message = 'Linting ' + chalk.cyan(filepath) + '...',
         result;
 
       // skip empty files
       if (file.length) {
-        result = csslint.verify( file, ruleset );
-        verbose.write( message );
+        result = csslint.verify(file, ruleset);
+        verbose.write(message);
         if (result.messages.length) {
-          verbose.or.write( message );
+          verbose.or.write(message);
           grunt.log.error();
         } else {
           verbose.ok();
@@ -71,7 +71,7 @@ module.exports = function(grunt) {
         // store combined result for later use with formatters
         combinedResult[filepath] = result;
 
-        result.messages.forEach(function( message ) {
+        result.messages.forEach(function(message) {
           var offenderMessage;
           if (typeof message.line !== 'undefined') {
             offenderMessage =
@@ -82,7 +82,7 @@ module.exports = function(grunt) {
             offenderMessage = chalk.yellow('GENERAL');
           }
 
-          if (!options.quiet || (options.quiet && message.type === 'error')) {
+          if (!options.quiet || options.quiet && message.type === 'error') {
             grunt.log.writeln(chalk.red('[') + offenderMessage + chalk.red(']'));
             grunt.log[ message.type === 'error' ? 'error' : 'writeln' ](
               message.type.toUpperCase() + ': ' +
@@ -93,7 +93,7 @@ module.exports = function(grunt) {
             );
           }
 
-          if (message.type === 'error' ) {
+          if (message.type === 'error') {
             hadErrors += 1;
           }
         });
@@ -104,28 +104,28 @@ module.exports = function(grunt) {
     });
 
     // formatted output
-    if (options.formatters && Array.isArray( options.formatters )) {
-      options.formatters.forEach(function ( formatterDefinition ) {
+    if (options.formatters && Array.isArray(options.formatters)) {
+      options.formatters.forEach(function (formatterDefinition) {
         if (formatterDefinition.id && formatterDefinition.dest) {
-          var formatter = csslint.getFormatter( formatterDefinition.id );
+          var formatter = csslint.getFormatter(formatterDefinition.id);
           if (formatter) {
             var output = formatter.startFormat();
-            _.each( combinedResult, function ( result, filename ) {
+            _.each(combinedResult, function (result, filename) {
               if (absoluteFilePaths) {
                 filename = path.resolve(filename);
               }
-              output += formatter.formatResults( result, filename, {});
+              output += formatter.formatResults(result, filename, {});
             });
             output += formatter.endFormat();
-            grunt.file.write( formatterDefinition.dest, output );
+            grunt.file.write(formatterDefinition.dest, output);
           }
         }
       });
     }
 
-    if ( hadErrors ) {
+    if (hadErrors) {
       return false;
     }
-    grunt.log.ok( this.filesSrc.length + grunt.util.pluralize(this.filesSrc.length, ' file/ files') + ' lint free.' );
+    grunt.log.ok(this.filesSrc.length + grunt.util.pluralize(this.filesSrc.length, ' file/ files') + ' lint free.');
   });
 };
