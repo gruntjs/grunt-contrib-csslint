@@ -75,7 +75,7 @@ Default: `null`
 If the formatters options is specified, the grunt csslint task is able to use the
 all formatters provided by csslint.
 
-For the current csslint version, the following formatters are supported:
+For the current csslint version, the following formatters are included out of the box:
 
 - `text`
 - `compact`
@@ -85,6 +85,8 @@ For the current csslint version, the following formatters are supported:
 - `junit-xml`
 
 For an explanation of those formatters, [check the csslint wiki](https://github.com/stubbornella/csslint/wiki/Command-line-interface), section Options/--format.
+
+You are also able to supply your own custom formatter, such as [csslint-stylish](https://www.npmjs.com/package/csslint-stylish). Note that you have to provide the complete module, not just the id. See [example](#providing-a-custom-formatter).
 
 ## absoluteFilePathsForFormatters
 

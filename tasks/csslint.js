@@ -106,8 +106,16 @@ module.exports = function(grunt) {
     // formatted output
     if (options.formatters && Array.isArray(options.formatters)) {
       options.formatters.forEach(function (formatterDefinition) {
-        if (formatterDefinition.id && formatterDefinition.dest) {
-          var formatter = csslint.getFormatter(formatterDefinition.id);
+        var formatterId = formatterDefinition.id;
+
+        if (formatterId && formatterDefinition.dest) {
+          if (!csslint.hasFormat(formatterId) && typeof formatterId === 'object' ) { // A custom formatter was supplied
+            csslint.addFormatter(formatterId);
+
+            formatterId = formatterId.id;
+          }
+
+          var formatter = csslint.getFormatter(formatterId);
           if (formatter) {
             var output = formatter.startFormat();
             _.each(combinedResult, function (result, filename) {

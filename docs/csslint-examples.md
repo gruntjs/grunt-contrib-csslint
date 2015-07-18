@@ -59,6 +59,25 @@ csslint: {
 }
 ```
 
+## Providing a custom formatter
+
+```js
+csslint: {
+  options: {
+    csslintrc: '.csslintrc',
+    formatters: [
+      {id: require('csslint-stylish'), dest: 'report/csslint_stylish.xml'}
+    ]
+  },
+  strict: {
+    options: {
+      import: 2
+    },
+    src: ['path/to/**/*.css']
+  }
+}
+```
+
 ## Using absolute file paths in the output formatters
 
 ```js
