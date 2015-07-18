@@ -1,4 +1,4 @@
-# grunt-contrib-csslint v0.4.0 [![Build Status: Linux](https://travis-ci.org/gruntjs/grunt-contrib-csslint.svg?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-csslint)
+# grunt-contrib-csslint v0.5.0 [![Build Status: Linux](https://travis-ci.org/gruntjs/grunt-contrib-csslint.svg?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-csslint)
 
 > Lint CSS files
 
@@ -103,7 +103,7 @@ Default: `null`
 If the formatters options is specified, the grunt csslint task is able to use the
 all formatters provided by csslint.
 
-For the current csslint version, the following formatters are supported:
+For the current csslint version, the following formatters are included out of the box:
 
 - `text`
 - `compact`
@@ -113,6 +113,8 @@ For the current csslint version, the following formatters are supported:
 - `junit-xml`
 
 For an explanation of those formatters, [check the csslint wiki](https://github.com/stubbornella/csslint/wiki/Command-line-interface), section Options/--format.
+
+You are also able to supply your own custom formatter, such as [csslint-stylish](https://www.npmjs.com/package/csslint-stylish). Note that you have to provide the complete module, not just the id. See [example](#providing-a-custom-formatter).
 
 #### absoluteFilePathsForFormatters
 
@@ -189,6 +191,25 @@ csslint: {
 }
 ```
 
+#### Providing a custom formatter
+
+```js
+csslint: {
+  options: {
+    csslintrc: '.csslintrc',
+    formatters: [
+      {id: require('csslint-stylish'), dest: 'report/csslint_stylish.xml'}
+    ]
+  },
+  strict: {
+    options: {
+      import: 2
+    },
+    src: ['path/to/**/*.css']
+  }
+}
+```
+
 #### Using absolute file paths in the output formatters
 
 ```js
@@ -206,6 +227,7 @@ csslint: {
 
 ## Release History
 
+ * 2015-07-18   v0.5.0   Add ability to register custom formatters.
  * 2015-01-18   v0.4.0   The `.csslintrc` file can now contain comments.
  * 2014-09-07   v0.3.1   Show affected browsers in errors and warnings.
  * 2014-09-07   v0.3.0   CSSLint "warnings" no longer fail build. Updated dependencies.
@@ -218,4 +240,4 @@ csslint: {
 
 Task submitted by [Jörn Zaefferer](http://bassistance.de)
 
-*This file was generated on Tue Feb 24 2015 22:08:17.*
+*This file was generated on Sat Jul 18 2015 22:58:12.*
