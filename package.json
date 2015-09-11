@@ -17,15 +17,15 @@
   "dependencies": {
     "chalk": "^1.0.0",
     "csslint": "^0.10.0",
-    "lodash": "^3.3.0",
+    "lodash": "^3.8.0",
     "strip-json-comments": "^1.0.2"
   },
   "devDependencies": {
-    "grunt": "^0.4.0",
+    "grunt": "^0.4.5",
     "grunt-cli": "^0.1.13",
     "grunt-contrib-clean": "^0.6.0",
-    "grunt-contrib-internal": "^0.4.2",
-    "grunt-contrib-jshint": "^0.11.0",
+    "grunt-contrib-internal": "^0.4.12",
+    "grunt-contrib-jshint": "^0.11.2",
     "grunt-contrib-nodeunit": "^0.4.1"
   },
   "peerDependencies": {
@@ -38,7 +38,6 @@
     "csslint"
   ],
   "files": [
-    "tasks",
-    "LICENSE-MIT"
+    "tasks"
   ]
 }
