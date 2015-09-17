@@ -52,6 +52,8 @@ module.exports = function(grunt) {
       }
     }
     var hadErrors = 0;
+
+    if (!options.useOnlyBuiltInFormatter) {
     this.filesSrc.forEach(function(filepath) {
       var file = grunt.file.read(filepath),
         message = 'Linting ' + chalk.cyan(filepath) + '...',
@@ -102,13 +104,14 @@ module.exports = function(grunt) {
       }
 
     });
+    }
 
     // formatted output
     if (options.formatters && Array.isArray(options.formatters)) {
       options.formatters.forEach(function (formatterDefinition) {
         var formatterId = formatterDefinition.id;
 
-        if (formatterId && formatterDefinition.dest) {
+        if (formatterId) {
           if (!csslint.hasFormat(formatterId) && _.isObject(formatterId)) { // A custom formatter was supplied
             csslint.addFormatter(formatterId);
 
@@ -125,7 +128,9 @@ module.exports = function(grunt) {
               output += formatter.formatResults(result, filename, {});
             });
             output += formatter.endFormat();
-            grunt.file.write(formatterDefinition.dest, output);
+
+            if (formatterDefinition.dest) grunt.file.write(formatterDefinition.dest, output);
+            else grunt.log.writeln(output);
           }
         }
       });
