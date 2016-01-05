@@ -2,7 +2,7 @@
  * grunt-contrib-csslint
  * http://gruntjs.com/
  *
- * Copyright (c) 2015 Jörn Zaefferer, contributors
+ * Copyright (c) 2016 Jörn Zaefferer, contributors
  * Licensed under the MIT license.
  */
 
