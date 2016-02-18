@@ -101,3 +101,10 @@ Type: `boolean`
 Default: `false`
 
 Only output errors.
+
+## quiet_all
+
+Type: `boolean`  
+Default: `false`
+
+Outputs without errors and warnings.
