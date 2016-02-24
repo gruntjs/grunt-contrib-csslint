@@ -66,6 +66,15 @@ module.exports = function(grunt) {
           ]
         },
         src: 'test/fixtures/*.css'
+      },
+      withCustomRules: {
+        options: {
+          formatters: [
+            {id: 'csslint-xml', dest: 'tmp/csslintWithCustomRules.xml'}
+          ],
+          extraRules: 'test/extraRules/*.js'
+        },
+        src: 'test/fixtures/*.css'
       }
     },
 

@@ -22,6 +22,16 @@ module.exports = function(grunt) {
     var chalk = require('chalk');
     var absoluteFilePaths = options.absoluteFilePathsForFormatters || false;
 
+    if (options.extraRules) {
+      grunt.log.debug('Adding Extra CSSLint Rules', options.extraRules);
+      grunt.file.expand({}, options.extraRules).forEach(function(filepath) {
+        filepath = path.resolve(filepath);
+        grunt.log.debug('Adding Extra CSSLint Rule', filepath);
+        var rule = require(filepath);
+        csslint.addRule(rule);
+      });
+    }
+
     // Read CSSLint options from a specified csslintrc file.
     if (options.csslintrc) {
       var contents = grunt.file.read(options.csslintrc);
