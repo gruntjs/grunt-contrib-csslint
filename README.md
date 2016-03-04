@@ -130,6 +130,13 @@ Default: `false`
 
 Only output errors.
 
+#### quiet_all
+
+Type: `boolean`  
+Default: `false`
+
+Outputs without errors and warnings.
+
 ### Usage Examples
 
 ```js
@@ -240,4 +247,4 @@ csslint: {
 
 Task submitted by [Jörn Zaefferer](http://bassistance.de)
 
-*This file was generated on Sat Jul 18 2015 22:58:12.*
+*This file was generated on Thu Feb 18 2016 20:59:05.*
