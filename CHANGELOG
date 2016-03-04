@@ -1,3 +1,8 @@
+v1.0.0:
+  date: 2016-03-04
+  changes:
+    - Point main to task and remove peerDeps.
+    - Updates to docs.
 v0.5.0:
   date: 2015-07-18
   changes:
