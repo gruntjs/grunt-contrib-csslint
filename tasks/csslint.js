@@ -82,7 +82,7 @@ module.exports = function(grunt) {
             offenderMessage = chalk.yellow('GENERAL');
           }
 
-          if (!options.quiet || options.quiet && message.type === 'error') {
+          if (!options.quiet && !options.quiet_all || options.quiet && message.type === 'error' && !options.quiet_all) {
             grunt.log.writeln(chalk.red('[') + offenderMessage + chalk.red(']'));
             grunt.log[ message.type === 'error' ? 'error' : 'writeln' ](
               message.type.toUpperCase() + ': ' +
