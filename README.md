@@ -1,4 +1,4 @@
-# grunt-contrib-csslint v1.0.0 [![Build Status: Linux](https://travis-ci.org/gruntjs/grunt-contrib-csslint.svg?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-csslint)
+# grunt-contrib-csslint v1.0.0 [![Build Status: Linux](https://travis-ci.org/gruntjs/grunt-contrib-csslint.svg?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-csslint) [![Build Status: Windows](https://ci.appveyor.com/api/projects/status/ls0y0jy0qni18gby/branch/master?svg=true)](https://ci.appveyor.com/project/gruntjs/grunt-contrib-csslint/branch/master)
 
 > Lint CSS files
 
@@ -247,4 +247,4 @@ csslint: {
 
 Task submitted by [Jörn Zaefferer](http://bassistance.de)
 
-*This file was generated on Fri Mar 04 2016 16:53:29.*
+*This file was generated on Thu Mar 17 2016 19:48:28.*
