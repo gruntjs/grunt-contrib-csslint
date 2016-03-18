@@ -240,11 +240,11 @@ csslint: {
  * 2014-09-07   v0.3.0   CSSLint "warnings" no longer fail build. Updated dependencies.
  * 2013-12-02   v0.2.0   Bump to csslint 0.10.0
  * 2013-04-02   v0.1.2   Allow absolute filepaths in reports.
- * 2013-03-14   v0.1.1   Support formatters Support .csslintrc
+ * 2013-03-14   v0.1.1   Support formatters. Support .csslintrc.
  * 2013-03-07   v0.1.0   Initial release.
 
 ---
 
 Task submitted by [Jörn Zaefferer](http://bassistance.de)
 
-*This file was generated on Thu Mar 17 2016 19:48:28.*
+*This file was generated on Fri Mar 18 2016 18:52:23.*
