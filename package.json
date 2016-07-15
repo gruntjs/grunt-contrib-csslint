@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "chalk": "^1.0.0",
-    "csslint": "^0.10.0",
+    "csslint": "^1.0.0",
     "lodash": "^4.8.2",
     "strip-json-comments": "^2.0.1"
   },
