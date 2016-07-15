@@ -73,7 +73,7 @@ module.exports = function(grunt) {
 
         result.messages.forEach(function(message) {
           var offenderMessage;
-          if (_.isUndefined(message.line)) {
+          if (!_.isUndefined(message.line)) {
             offenderMessage =
               chalk.yellow('L' + message.line) +
               chalk.red(':') +
