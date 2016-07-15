@@ -73,7 +73,7 @@ module.exports = function(grunt) {
 
         result.messages.forEach(function(message) {
           var offenderMessage;
-          if (!_.isUndefined(message.line)) {
+          if (message.line !== 'undefined') {
             offenderMessage =
               chalk.yellow('L' + message.line) +
               chalk.red(':') +
@@ -109,7 +109,7 @@ module.exports = function(grunt) {
         var formatterId = formatterDefinition.id;
 
         if (formatterId && formatterDefinition.dest) {
-          if (!csslint.hasFormat(formatterId) && _.isObject(formatterId)) { // A custom formatter was supplied
+          if (!csslint.hasFormat(formatterId) && typeof formatterId === 'object') { // A custom formatter was supplied
             csslint.addFormatter(formatterId);
 
             formatterId = formatterId.id;
