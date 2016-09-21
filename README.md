@@ -1,4 +1,4 @@
-# grunt-contrib-csslint v1.0.0 [![Build Status: Linux](https://travis-ci.org/gruntjs/grunt-contrib-csslint.svg?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-csslint) [![Build Status: Windows](https://ci.appveyor.com/api/projects/status/ls0y0jy0qni18gby/branch/master?svg=true)](https://ci.appveyor.com/project/gruntjs/grunt-contrib-csslint/branch/master)
+# grunt-contrib-csslint v2.0.0 [![Build Status: Linux](https://travis-ci.org/gruntjs/grunt-contrib-csslint.svg?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-csslint) [![Build Status: Windows](https://ci.appveyor.com/api/projects/status/ls0y0jy0qni18gby/branch/master?svg=true)](https://ci.appveyor.com/project/gruntjs/grunt-contrib-csslint/branch/master)
 
 > Lint CSS files
 
@@ -233,6 +233,7 @@ csslint: {
 
 ## Release History
 
+ * 2016-09-22   v2.0.0   Update (dev)dependecies including to csslint to v1.0.3.
  * 2016-03-04   v1.0.0   Point main to task and remove peerDeps. Updates to docs.
  * 2015-07-18   v0.5.0   Add ability to register custom formatters.
  * 2015-01-18   v0.4.0   The `.csslintrc` file can now contain comments.
@@ -247,4 +248,4 @@ csslint: {
 
 Task submitted by [Jörn Zaefferer](http://bassistance.de)
 
-*This file was generated on Fri Mar 18 2016 18:52:23.*
+*This file was generated on Thu Sep 22 2016 02:55:13.*

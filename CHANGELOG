@@ -1,3 +1,7 @@
+v2.0.0:
+  date: 2016-09-22
+  changes:
+    - Update (dev)dependecies including to csslint to v1.0.3.
 v1.0.0:
   date: 2016-03-04
   changes:
