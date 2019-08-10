@@ -177,7 +177,7 @@ csslint: {
 }
 ```
 
-#### Specifiying output formatters
+#### Specifying output formatters
 
 ```js
 csslint: {
